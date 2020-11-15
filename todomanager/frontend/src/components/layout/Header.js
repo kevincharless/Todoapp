@@ -40,16 +40,16 @@ export class Header extends Component {
         );
 
         return (
-            <nav className="navbar navbar-expand-sm navbar-light bg-light">
+            <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <div className="container">
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <a className="navbar-brand" href="#">Todo Manager</a>
+                    <div className="collapse navbar-collapse" id="navbarCollapse">
+                        <a className="navbar-brand" href="#">Fixed navbar</a>
                     </div>
                     { isAuthenticated ? authLinks : guestLinks }
-                </div>
+                </div>  
             </nav>
         )
     }

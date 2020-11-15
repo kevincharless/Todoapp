@@ -11,10 +11,13 @@ import Alerts from './layout/Alerts';
 import Login from './accounts/Login';
 import Register from './accounts/Register';
 import PrivateRoute from './common/PrivateRoute';
+import LandingPage from './accounts/LandingPage';
 
 import { Provider } from 'react-redux';
 import store from '../store';
 import { loadUser } from '../actions/auth';
+
+import AOS from 'aos';
 
 // Alert Options
 const alertOptions = {
@@ -25,6 +28,10 @@ const alertOptions = {
 class App extends Component {
     componentDidMount() {
         store.dispatch(loadUser());
+
+        AOS.init({
+            duration : 1000
+        });
     }
 
     render() {
@@ -35,13 +42,12 @@ class App extends Component {
                         <Fragment>
                             <Header />
                             <Alerts />
-                            <div className="container">
                                 <Switch>
                                     <PrivateRoute exact path="/" component={Dashboard} />
                                     <Route exact path="/register" component={Register} />
                                     <Route exact path="/login" component={Login} />
+                                    <Route exact path="/landingpage" component={LandingPage} />
                                 </Switch>
-                            </div>
                         </Fragment>
                     </Router>
                 </AlertProvider>

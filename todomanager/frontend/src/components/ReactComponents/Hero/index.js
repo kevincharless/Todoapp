@@ -20,7 +20,7 @@ const hero = () => {
             line-height: 1em;
             text-transform: uppercase;
             letter-spacing: 0.01em;
-        `
+        `   
     }
 
     return (
@@ -35,6 +35,7 @@ const hero = () => {
                 </div>
             </div>
         </div>
+        
     )
 }
 

@@ -12,18 +12,13 @@ import Login from './accounts/Login';
 import Register from './accounts/Register';
 import PrivateRoute from './common/PrivateRoute';
 import LandingPage from './accounts/LandingPage';
+import NotFound404 from './accounts/NotFound404';
 
 import { Provider } from 'react-redux';
 import store from '../store';
 import { loadUser } from '../actions/auth';
 
 import AOS from 'aos';
-
-// Alert Options
-const alertOptions = {
-    timeout: 3000,
-    position: 'top center'
-}
 
 class App extends Component {
     componentDidMount() {
@@ -32,9 +27,15 @@ class App extends Component {
         AOS.init({
             duration : 1000
         });
+        
     }
 
     render() {
+        // Alert Options
+        const alertOptions = {
+            timeout: 3000,
+            position: 'top center'
+        }
         return (
             <Provider store={store}>
                 <AlertProvider template={AlertTemplate} {...alertOptions}>
@@ -47,6 +48,7 @@ class App extends Component {
                                     <Route exact path="/register" component={Register} />
                                     <Route exact path="/login" component={Login} />
                                     <Route exact path="/landingpage" component={LandingPage} />
+                                    <Route component={NotFound404} />
                                 </Switch>
                         </Fragment>
                     </Router>

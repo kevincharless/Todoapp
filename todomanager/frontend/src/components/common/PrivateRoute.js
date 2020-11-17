@@ -1,24 +1,23 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-const PrivateRoute = ({ component: Component, auth, ...rest }) => (
-    <Route 
-        {...rest}
-        render={props => {
-            if(auth.isLoading) {
-                return <h2>Loading...</h2>;
-            } else if(!auth.isAuthenticated) {
-                return <Redirect to="/LandingPage" />;
-            } else {
-                return <Component {...props} />;
-            }
-        }}
-    />
-);
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    const isAuthenticated = localStorage.getItem("token");
 
-const mapStateToProps = state => ({
-    auth: state.auth
-});
+    return (
+        <Route 
+            {...rest}
+            render={props => {
+                if(isAuthenticated) {
+                    return <Component {...props} />;
+                } else {
+                    return <Redirect to="/landingpage" />;
+                }
+            }}
+        />
+    )
+};
 
-export default connect(mapStateToProps)(PrivateRoute);
+
+
+export default PrivateRoute;

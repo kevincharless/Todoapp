@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import  { logout } from '../../actions/auth';
+// import Navbar from '../ReactComponents/Navbar'
 
 export class Header extends Component {
     static propTypes ={
@@ -40,7 +41,7 @@ export class Header extends Component {
         );
 
         return (
-            <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <nav className="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
                 <div className="container">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

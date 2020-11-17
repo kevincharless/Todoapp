@@ -1,4 +1,4 @@
-import { GET_TODOS, DELETE_TODO, ADD_TODO } from "../actions/types.js";
+import { GET_TODOS, DELETE_TODO, ADD_TODO, COMPLETED_TODO, UPDATE_TODO } from "../actions/types.js";
 
 const initialState = {
     todos: []
@@ -21,6 +21,16 @@ export default function(state = initialState, action) {
                 ...state,
                 todos: [...state.todos, action.payload]
             };
+        case COMPLETED_TODO:
+        case UPDATE_TODO:
+            let edittedIndex = state.todos.findIndex(todo => todo.id === action.payload.id)
+
+            state.todos[edittedIndex].completed = action.payload.completed
+            state.todos[edittedIndex].title = action.payload.title
+            return {
+                ...state,
+                todos: [...state.todos]
+            }
         default:
             return state;
     }

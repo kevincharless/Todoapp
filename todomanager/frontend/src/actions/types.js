@@ -11,3 +11,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
+export const COMPLETED_TODO = "COMPLETED_TODO";
+export const EDIT_TODO = "EDIT_TODO";
+export const RESET_TODO = "RESET_TODO";
+export const UPDATE_TODO = "UPDATE_TODO";

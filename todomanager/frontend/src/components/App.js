@@ -20,6 +20,13 @@ import { loadUser } from '../actions/auth';
 
 import AOS from 'aos';
 
+// Alert Options
+const alertOptions = {
+    timeout: 3000,
+    offset: '10px',
+    position: 'bottom right'
+}
+
 class App extends Component {
     componentDidMount() {
         store.dispatch(loadUser());
@@ -31,18 +38,13 @@ class App extends Component {
     }
 
     render() {
-        // Alert Options
-        const alertOptions = {
-            timeout: 3000,
-            position: 'top center'
-        }
         return (
             <Provider store={store}>
                 <AlertProvider template={AlertTemplate} {...alertOptions}>
                     <Router>
                         <Fragment>
                             <Header />
-                            <Alerts />
+                                <Alerts />
                                 <Switch>
                                     <PrivateRoute exact path="/" component={Dashboard} />
                                     <Route exact path="/register" component={Register} />

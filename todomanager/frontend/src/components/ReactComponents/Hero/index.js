@@ -3,6 +3,18 @@ import { jsx, css } from '@emotion/react'
 
 const hero = () => {
     const style = {
+        animate: css`
+            position: relative;
+            animation-name: div;
+            animation-duration: 3s;
+            animation-direction: alternate;
+
+            @keyframes div {
+                from { right: -50px; opacity: 0.3; }
+                to   { right: 0 ; opacity: 1; }
+
+            }
+        `,
         topPage: css`
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../../../static/frontend/images/landingPage.jpg');
             background-repeat: no-repeat;
@@ -25,7 +37,7 @@ const hero = () => {
 
     return (
         <div css={style.topPage} className="row">
-            <div className="container">
+            <div css={style.animate} className="container">
                 <div className="col d-flex align-items-end text-right h-100">
                     <div css={style.heading} className="ml-auto mb-4">
                         <span className="d-block">Big Ideas,</span>

@@ -32,7 +32,7 @@ class App extends Component {
         store.dispatch(loadUser());
 
         AOS.init({
-            duration : 1000
+            duration : 1000,
         });
         
     }

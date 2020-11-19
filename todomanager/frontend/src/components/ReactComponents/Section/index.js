@@ -1,12 +1,18 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
 
-const Section = ({ heading, content }) => {
+const Section = ({ bgGreen, heading, content }) => {
     const style = {
-        container: css`
-            padding: 5em 0;
+        bgWhite: css`
+            background-color: white;
         `,
-        heading: css`
+        bgGreen: css`
+            background-color: #89a617;
+        `,
+        container: css`
+            padding: 2.5em 0 0 0;
+        `,
+        headingBlack: css`
             color: #1b1b1b;
             margin-bottom: 0;
             font-family: 'Roboto', sans-serif;
@@ -15,11 +21,26 @@ const Section = ({ heading, content }) => {
             text-transform: uppercase;
             letter-spacing: 0.01em;
         `,
-        hr: css`
-            margin: 0.5em 0 3em 0;
+        headingWhte: css`
+            color: white;
+            margin-bottom: 0;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 900;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
         `,
-        paragraph: css`
+        hr: css`
+            margin: 0.5em 0 1em 0;
+        `,
+        paragraphBlack: css`
             color: #1b1b1b;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1em;
+            letter-spacing: 0.01em;
+        `,
+        paragraphWhite: css`
+            color: white;
             font-family: 'Roboto', sans-serif;
             font-size: 1.1em;
             letter-spacing: 0.01em;
@@ -30,21 +51,24 @@ const Section = ({ heading, content }) => {
         `
     }
     return (
-        <div css={style.container} className="container">
-            <div className="row d-flex justify-content-center">
-                <h2 css={style.heading}>{ heading }</h2>
-            </div>
-            
-            <hr css={style.hr} />
-            
-            <div  className="row d-flex justify-content-center">
-                <div css={style.divparagraph}>
-                    <p css={style.paragraph}>
-                        { content }
-                    </p>
+        <div css={bgGreen ? style.bgGreen : style.bgWhite}>
+            <div data-aos="zoom-in" css={style.container} className="container">
+                <div className="row d-flex justify-content-center">
+                    <h2 css={bgGreen ? style.headingWhte : style.headingBlack}>{ heading }</h2>
+                </div>
+                
+                <hr css={style.hr} />
+                
+                <div  className="row d-flex justify-content-center">
+                    <div css={style.divparagraph}>
+                        <p css={bgGreen ? style.paragraphWhite : style.paragraphBlack}>
+                            { content }
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+        
     )
 }
 

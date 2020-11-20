@@ -31,61 +31,65 @@ export class Todos extends Component {
     }
 
     render() {
+        const style = {
+            div: css`
+                background: #1b1b1b;
+                height: 73vh;
+            `,
+            button: css`
+                color: white;
+                background-color: #b3d146;
+                border: 2px solid #b3d146;
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+
+                &:hover {
+                    color: white;
+                    background: transparent;
+                }
+            `,
+            todos: css`
+                margin-right: 2.5em;
+                color: white;
+                font-size: 1.5em;
+                font-family: 'Roboto', sans-serif;
+            `,
+            hr: css`
+                border-top: 2px solid white;
+            `,
+        }
         return (
             <Fragment>
-                <div className="container">
-                    <div id="list-wrapper"> 
-                    { this.props.todos.map(todo => (
-                            <div css={style.taskwrapper} key={todo.id} className="task-wrapper flex-wrapper">
-                                <div onClick={this.props.completedTodo.bind(this, todo)} style={{flex:7}}>
-                                    {todo.completed === false ? (
-                                        <span>{todo.title}</span>
-                                    ) : (
-                                        <strike>{todo.title}</strike>
-                                    )}
-                                    
-                                </div>
-
-                                {!todo.completed && (
-                                    <div style={{flex:1}}>
-                                        <button onClick={this.props.editTodo.bind(this, todo.title, todo.id)} className="btn btn-sm btn-outline-info">Edit</button>
+                <div css={style.div} className="container">
+                    <div className="container">
+                        <div css={style.todos}> 
+                            { this.props.todos.map(todo => (
+                                <div css={style.taskwrapper} key={todo.id} className="d-flex flex-wrap">
+                                    <div onClick={this.props.completedTodo.bind(this, todo)} style={{flex:12}}>
+                                        {todo.completed === false ? (
+                                            <span>{todo.title}</span>
+                                        ) : (
+                                            <strike>{todo.title}</strike>
+                                        )}
+                                        <hr css={style.hr} />
                                     </div>
-                                )}
 
-                                <div style={{flex:1}}>
-                                    <button onClick={this.props.deleteTodo.bind(this, todo.id)} className="btn btn-sm btn-outline-danger delete">-</button>
+                                    {!todo.completed && (
+                                        <div style={{flex:1}}>
+                                            <button onClick={this.props.editTodo.bind(this, todo.title, todo.id)} className="btn btn-sm btn-outline-info">Edit</button>
+                                            <hr css={style.hr} />
+                                        </div>
+                                    )}
+
+                                    <div style={{flex:1}}>
+                                        <button onClick={this.props.deleteTodo.bind(this, todo.id)} className="btn btn-sm btn-danger delete">Delete</button>
+                                        <hr css={style.hr} />
+                                    </div>
                                 </div>
-
-                            </div>
                             ))}
+                        </div>
                     </div>
                 </div>
-                
-
-
-                {/* <h2>Todos</h2>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Completed</th>
-                            <th />
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.props.todos.map(todo => (
-                            <tr key={todo.id}>
-                                <td>{todo.id}</td>
-                                <td>{todo.title}</td>
-                                <td>{todo.completed}</td>
-                                <td>
-                                    <button onClick={this.props.deleteTodo.bind(this, todo.id)} className="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                            </tr>
-                        )) }
-                    </tbody>
-                </table> */}
             </Fragment>
         )
     }

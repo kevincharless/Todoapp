@@ -47,6 +47,7 @@ export class Header extends Component {
                 font-weight: bold;
             `,
             nav: css`
+                color: white;
                 font-family: 'Roboto', sans-serif;
                 font-size: 1em;
             `,
@@ -79,7 +80,18 @@ export class Header extends Component {
                     color: white;
                     background: #1b1b1b;
                 }
-            `
+            `,
+            btnLogout: css`
+                color: white;
+                font-family: 'Roboto', sans-serif;
+                font-size: 1em;
+                font-weight: bold;
+
+                &:hover {
+                    color: white;
+                    background: transparent;
+                }
+            `,
         }
 
         const { isAuthenticated, user } = this.props.auth;
@@ -87,12 +99,12 @@ export class Header extends Component {
         const authLinks = (
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                 <span className="navbar-text mr-3">
-                    <strong>
+                    <strong css={style.nav}>
                         { user ? `Welcome ${user.username}` : "" }
                     </strong>
                 </span>
                 <li className="nav-item">
-                    <button onClick={this.handleLogout} className="nav-link btn btn-info btn-sm text-light">
+                    <button css={style.btnLogout} onClick={this.handleLogout} className="nav-link btn btn-danger btn-sm text-light">
                         Logout
                     </button>
                 </li>

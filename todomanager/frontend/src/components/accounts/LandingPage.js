@@ -5,7 +5,7 @@ import Content from '../ReactComponents/Content'
 import Content2 from '../ReactComponents/Content2'
 import Section from '../ReactComponents/Section'
 import Carousel from '../ReactComponents/Carousel'
-import Footer from '../ReactComponents/Footer'
+import Endcontent from '../ReactComponents/Endcontent'
 
 export default class LandingPage extends Component {
     render() {
@@ -69,7 +69,7 @@ export default class LandingPage extends Component {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Endcontent />
             </>
         )
     }

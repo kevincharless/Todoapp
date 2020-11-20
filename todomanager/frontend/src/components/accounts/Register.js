@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
 import { createMessage } from '../../actions/messages';
-import EndContent from '../ReactComponents/EndContent'
+import EndContent from '../ReactComponents/Footer'
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
@@ -43,7 +43,62 @@ export class Register extends Component {
     render() {
         const style = {
             div: css`
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../../static/frontend/images/register.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+                height: 92.1vh;
+            `,
+            heading: css`
+                color: #b3d146;
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+                font-size: 3em;
+                line-height: 1em;
+                text-transform: uppercase;
+            `,
+            text: css`
+                color: white;
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+                font-size: 1.5em;
+                line-height: 1em;
+                text-transform: uppercase;
+            `,
+            input: css`
+                background: transparent;
+                color: white;
+                font-family: 'Roboto', sans-serif;
+                border: 2px solid #b3d146;
+            `,
+            button: css`
+                color: white;
                 background-color: #b3d146;
+                border: 2px solid #b3d146;
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+
+                &:hover {
+                    color: white;
+                    background: transparent;
+                }
+            `,
+            alreadyHave: css`
+                color: white;
+                font-family: 'Roboto', sans-serif;
+                font-size: 1.2em;
+                line-height: 1em;
+            `,
+            alreadyHaveButton: css`
+                color:  #b3d146;
+                font-family: 'Roboto', sans-serif;
+                font-size: 1.2em;
+                line-height: 1em;
+
+                &:hover {
+                    color: white;
+                    text-decoration: none;
+                }
             `,
         }
 
@@ -56,12 +111,13 @@ export class Register extends Component {
             <>
             <div css={style.div} className="py-4">
                 <div className="col-md-6 m-auto">
-                    <div className="card card-body mt-5">
-                        <h2 className="text-center">Register</h2>
+                    <div className="card card-body mt-4 bg-transparent border-0">
+                        <h2 css={style.heading} className="text-center my-4">Register</h2>
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
-                                <label>Username</label>
+                                <label css={style.text}>Username</label>
                                 <input
+                                    css={style.input}
                                     type="text"
                                     className="form-control"
                                     name="username"
@@ -70,8 +126,9 @@ export class Register extends Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Email</label>
+                                <label css={style.text}>Email</label>
                                 <input
+                                    css={style.input}
                                     type="email"
                                     className="form-control"
                                     name="email"
@@ -80,8 +137,9 @@ export class Register extends Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Password</label>
+                                <label css={style.text}>Password</label>
                                 <input
+                                    css={style.input}
                                     type="password"
                                     className="form-control"
                                     name="password"
@@ -90,8 +148,9 @@ export class Register extends Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Confirm Password</label>
+                                <label css={style.text}>Confirm Password</label>
                                 <input
+                                    css={style.input}
                                     type="password"
                                     className="form-control"
                                     name="password2"
@@ -100,13 +159,15 @@ export class Register extends Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <button type="submit" className="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                                <p>
-                                Already have an account? <Link to="/login">Login</Link>
+                                <p css={style.alreadyHave}>
+                                    <button css={style.button} type="submit" className="btn mr-4">
+                                        Register
+                                    </button>
+
+                                    *Already have an account? <Link to="/login" css={style.alreadyHaveButton}>Login</Link>
                                 </p>
+                            </div>
+                                
                         </form>
                     </div>
                 </div>

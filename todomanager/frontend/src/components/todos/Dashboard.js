@@ -12,9 +12,13 @@ export default function Dashboard() {
     }
 
     return (
-        <Fragment>
-            <Form />
-            <Todos />
-        </Fragment>
+        <div style={{backgroundColor: '#1b1b1b'}}>
+            <div className="container">
+                <Fragment>
+                    <Form />
+                    <Todos />
+                </Fragment>
+            </div>
+        </div>
     )
 }

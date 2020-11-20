@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { addTodo, updateTodo } from '../../actions/todos';
 import { resetTodo } from '../../actions/todoform';
 
+/** @jsx jsx */
+import { jsx, css } from '@emotion/react'
+
 export class Form extends Component {
     constructor(props) {
         super(props);
@@ -64,15 +67,48 @@ export class Form extends Component {
     };
 
     render() {
+        const style = {
+            div: css`
+                padding-top: 6em;
+                padding-bottom: 1em;
+            `,
+            button: css`
+                color: white;
+                background-color: #b3d146;
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+
+                &:hover {
+                    color: #b3d146;
+                    background: white;
+                }
+            `,
+            divCancel: css`
+                flex: auto 0 auto;
+            `,
+            buttonCancel: css`
+                display:
+                color: white;
+                background-color: #ff0039;;
+                font-size: 1em;
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+
+                &:hover {
+                    color: white;
+                    background: transparent;
+                }
+            `,
+        }
+
         const { title } = this.state
         return (
-            <div className="container">
-                <br /><br /><br />
-                <div id="task-container">
-                    <div  id="form-wrapper">
+            <div css={style.div} className="container">
+                <div className="pt-4">
+                    <div className="pt-4">
                         <form onSubmit={this.onSubmit} id="form">
-                            <div className="flex-wrapper">
-                                <div style={{flex: 6}}>
+                            <div className="d-flex flex-wrap">
+                                <div style={{flex: 12}}>
                                     <input
                                         onChange={this.onChange}
                                         className="form-control"
@@ -85,13 +121,13 @@ export class Form extends Component {
                                         />
                                 </div>
                                 {this.props.todoform.formState === "edit" && (
-                                    <div style={{flex: 1}}>
-                                        <button onClick={this.props.resetTodo.bind(this)} className="btn btn-danger" type="button" name="Cancel">Cancel Edit</button>
+                                    <div css={style.divCancel} >
+                                        <button css={style.buttonCancel} onClick={this.props.resetTodo.bind(this)} className="btn btn-danger" type="button" name="Cancel">Cancel Edit</button>
                                     </div>
                                 )}
 
-                                <div style={{flex: 1}}>
-                                    <button id="submit" className="btn" type="submit" name="Add">Submit</button>
+                                <div style={{flex: 2}}>
+                                    <button css={style.button} className="btn px-4" type="submit" name="Add">Submit</button>
                                 </div>
                             </div>
                         </form>

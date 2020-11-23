@@ -19,10 +19,6 @@ export class Form extends Component {
         formState: 'create',
     }
 
-    componentDidMount = () => {
-        console.log(this.props)
-    }
-
     componentDidUpdate = (prevprops, prevstate) => {
         if (prevstate.formState != this.props.todoform.formState) {
             this.setState({
@@ -69,34 +65,32 @@ export class Form extends Component {
     render() {
         const style = {
             div: css`
-                padding-top: 6em;
                 padding-bottom: 1em;
             `,
             button: css`
-                color: white;
+                color: #fcf9f9;
                 background-color: #b3d146;
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
 
                 &:hover {
-                    color: #b3d146;
-                    background: white;
+                    color: #020205;
+                    background: #b3d146;
                 }
             `,
             divCancel: css`
                 flex: auto 0 auto;
             `,
             buttonCancel: css`
-                display:
-                color: white;
-                background-color: #ff0039;;
+                color: #fcf9f9;
+                background-color: #cd0a0a;;
                 font-size: 1em;
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
 
                 &:hover {
-                    color: white;
-                    background: transparent;
+                    color: #020205;
+                    background: #cd0a0a;
                 }
             `,
         }
@@ -104,8 +98,8 @@ export class Form extends Component {
         const { title } = this.state
         return (
             <div css={style.div} className="container">
-                <div className="pt-4">
-                    <div className="pt-4">
+                <div>
+                    <div>
                         <form onSubmit={this.onSubmit} id="form">
                             <div className="d-flex flex-wrap">
                                 <div style={{flex: 12}}>
@@ -122,7 +116,7 @@ export class Form extends Component {
                                 </div>
                                 {this.props.todoform.formState === "edit" && (
                                     <div css={style.divCancel} >
-                                        <button css={style.buttonCancel} onClick={this.props.resetTodo.bind(this)} className="btn btn-danger" type="button" name="Cancel">Cancel Edit</button>
+                                        <button css={style.buttonCancel} onClick={this.props.resetTodo.bind(this)} className="btn" type="button" name="Cancel">Cancel Edit</button>
                                     </div>
                                 )}
 

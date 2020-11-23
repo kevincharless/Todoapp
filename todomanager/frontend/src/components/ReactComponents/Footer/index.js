@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     const style = {
         footer: css`
-            background-color: #1b1b1b;
+            background-color: #020205;
             margin: 0;
             padding: 0.5em;
             font-family: 'Roboto', sans-serif;
@@ -21,17 +21,17 @@ const Footer = () => {
             text-size: 1.5em;
 
             &:hover {
-                color: white;
+                color: #fcf9f9;
                 text-decoration: none;
             }
         `,
         p: css`
-            color: white;
+            color: #fcf9f9;
             font-family: 'Roboto', sans-serif;
             text-size: 1.5em;
         `,
         pButton: css`
-            color: white;
+            color: #fcf9f9;
             font-family: 'Roboto', sans-serif;
             text-size: 1.5em;
 

@@ -22,7 +22,7 @@ const Endcontent = () => {
                 text-transform: uppercase;
             `,
         content: css`
-            color: white;
+            color: #fcf9f9;
             font-family: 'Roboto', sans-serif;
             font-weight: bold;
             font-size: 1.5em;
@@ -30,7 +30,7 @@ const Endcontent = () => {
             text-transform: uppercase;
         `,
         button: css`
-            color: white;
+            color: #fcf9f9;
             margin: 1em 1.5em 0;
             background-color: transparent;
             border: 2px solid #b3d146;
@@ -38,7 +38,7 @@ const Endcontent = () => {
             font-weight: bold;
 
             &:hover {
-                color: white;
+                color: #fcf9f9;
                 background: #b3d146;
             }
         `,
@@ -47,14 +47,16 @@ const Endcontent = () => {
     return (
         <div>
             <div css={style.div} className="d-flex justify-content-center align-items-center">
-                <div className="text-center w-50">
+                <div className="text-center w-75" data-aos="zoom-in">
                     <span css={style.heading} className="d-block">
                         Start Planning Today
                     </span>
-                    <span css={style.content} className="d-block">
-                        Sign up and join over 1,000,000 teams worldwide who are using Todoapp to get more done.
-                    </span>
-                    <span css={style.content} className="d-block">
+                    <div className="d-flex justify-content-center">
+                        <span css={style.content} className="d-flex justify-content-center w-50">
+                            Sign up and join over 1,000,000 teams worldwide who are using Todoapp to get more done.
+                        </span>
+                    </div>
+                    <span css={style.content} className="d-block" data-aos="zoom-in-up">
                         <Link to="/login">
                             <button css={style.button} type="button" className="btn btn-lg">
                                 Get Started - It`s Free !

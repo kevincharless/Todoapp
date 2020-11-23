@@ -5,7 +5,6 @@ import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 import  { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 
-import Header from './layout/Header';
 import Dashboard from './todos/Dashboard';
 import Alerts from './layout/Alerts';
 import Login from './accounts/Login';
@@ -39,23 +38,25 @@ class App extends Component {
 
     render() {
         return (
-            <Provider store={store}>
-                <AlertProvider template={AlertTemplate} {...alertOptions}>
-                    <Router>
-                        <Fragment>
-                            <Header />
-                                <Alerts />
-                                <Switch>
-                                    <PrivateRoute exact path="/" component={Dashboard} />
-                                    <Route exact path="/register" component={Register} />
-                                    <Route exact path="/login" component={Login} />
-                                    <Route exact path="/landingpage" component={LandingPage} />
-                                    <Route component={NotFound404} />
-                                </Switch>
-                        </Fragment>
-                    </Router>
-                </AlertProvider>
-            </Provider>
+            <div className="wrapper">
+                <Provider store={store}>
+                    <AlertProvider template={AlertTemplate} {...alertOptions}>
+                        <Router>
+                            <Fragment>
+                                    <Alerts />
+                                    <Switch>
+                                        <PrivateRoute exact path="/" component={Dashboard} />
+                                        <Route exact path="/register" component={Register} />
+                                        <Route exact path="/login" component={Login} />
+                                        <Route exact path="/landingpage" component={LandingPage} />
+                                        <Route component={NotFound404} />
+                                    </Switch>
+                            </Fragment>
+                        </Router>
+                    </AlertProvider>
+                </Provider>
+            </div>
+            
         )
     }
 }

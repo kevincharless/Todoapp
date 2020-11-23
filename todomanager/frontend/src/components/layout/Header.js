@@ -11,7 +11,7 @@ export class Header extends Component {
         super(props);
     
         this.state = {
-        isTop: true
+        isTop: true,
     };
     this.onScroll = this.onScroll.bind(this);
     }
@@ -40,24 +40,57 @@ export class Header extends Component {
     
     render() {
         const style = {
+            btnPositionActive: css`
+                position: relative;
+                padding-left: 8vw;
+            `,
+            btnPositionDeactive: css`
+                position: relative;
+                padding-left: 0vw;
+            `,
             logo: css`
-                color: white;
+                color: #fcf9f9;
                 font-family: 'Roboto', sans-serif;
                 font-size: 2em;
                 font-weight: bold;
+
+                &:hover {
+                    color: #020205;
+                }
+            `,
+            logoGreen: css`
+                color: #b3d146;
+                font-family: 'Roboto', sans-serif;
+                font-size: 2em;
+                font-weight: bold;
+
+                &:hover {
+                    color: #020205;
+                }
+            `,
+            logoLanding: css`
+                color: #fcf9f9;
+                font-family: 'Roboto', sans-serif;
+                font-size: 2em;
+                font-weight: bold;
+
+                &:hover {
+                    color: #b3d146;
+                }
             `,
             nav: css`
-                color: white;
+                color: #b3d146;
                 font-family: 'Roboto', sans-serif;
-                font-size: 1em;
+                font-size: 1.2em;
+                font-weight: bold;
             `,
             navactive: css`
-                background-color: #1b1b1b;
+                background-color: #020205;
                 font-family: 'Roboto', sans-serif;
                 font-size: 1em;
             `,
             btnRegister: css`
-                color: white;
+                color: #fcf9f9;
                 font-family: 'Roboto', sans-serif;
                 font-size: 1em;
                 font-weight: bold;
@@ -65,31 +98,41 @@ export class Header extends Component {
 
                 &:hover {
                     color: #b3d146;
-                    background: #1b1b1b;
+                    background: #020205;
                 }
             `,
             btnLogin: css`
                 background: #b3d146;
-                color: white;
+                color: #fcf9f9;
                 font-family: 'Roboto', sans-serif;
                 font-size: 1em;
                 font-weight: bold;
                 padding: 6px 16px;
 
                 &:hover {
-                    color: white;
-                    background: #1b1b1b;
+                    color: #fcf9f9;
+                    background: #020205;
                 }
             `,
             btnLogout: css`
-                color: white;
+                background-color: #cd0a0a;
+                color: #fcf9f9;
                 font-family: 'Roboto', sans-serif;
                 font-size: 1em;
                 font-weight: bold;
 
                 &:hover {
-                    color: white;
+                    color: #cd0a0a;
                     background: transparent;
+                    border: 2px solid #cd0a0a;
+                }
+            `,
+            buttonSidebar: css`
+                background-color: #b3d146;
+
+                &:hover {
+                    color: white;
+                    
                 }
             `,
         }
@@ -97,14 +140,14 @@ export class Header extends Component {
         const { isAuthenticated, user } = this.props.auth;
         
         const authLinks = (
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+            <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                 <span className="navbar-text mr-3">
                     <strong css={style.nav}>
                         { user ? `Welcome ${user.username}` : "" }
                     </strong>
                 </span>
                 <li className="nav-item">
-                    <button css={style.btnLogout} onClick={this.handleLogout} className="nav-link btn btn-danger btn-sm text-light">
+                    <button css={style.btnLogout} onClick={this.handleLogout} className="nav-link btn btn-sm">
                         Logout
                     </button>
                 </li>
@@ -112,7 +155,7 @@ export class Header extends Component {
         );
 
         const guestLinks = (
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+            <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li className="nav-item d-flex justify-content-center px-2">
                     <Link to="/register">
                         <button css={style.btnRegister} className="btn">Register</button>
@@ -126,22 +169,39 @@ export class Header extends Component {
             </ul>
         );
 
+        const handleChange = (e) => this.props.handleActiveSidebar(e.target.value);
+
         return (
-            <nav css={this.state.isTop ? style.nav : style.navactive } className={this.state.isTop ? 'navbar navbar-expand-sm navbar-dark fixed-top navbar-transparent' : 'navbar navbar-expand-sm navbar-dark fixed-top'}>
+            <nav css={this.state.isTop ? style.nav : style.navactive } className={this.state.isTop ? 'navbar navbar-expand navbar-toggleable-xl navbar-inverse fixed-top navbar-transparent' : 'navbar navbar-expand navbar-toggleable-xl navbar-inverse fixed-top'}>
+                { isAuthenticated ? 
+                            <button css={style.buttonSidebar} onClick={handleChange} type="button" id="sidebarCollapse" className="btn rounded-circle">
+                                <span className="material-icons">
+                                    menu
+                                </span>
+                            </button>
+                            :
+                            ""
+                        }
                 <div className="container">
-                    <button className="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
+                    <Link to="/" className={isAuthenticated ? "invisible" : "visible"}>
+                        {this.props.headerLanding ?
+                            <a css={this.props.logoGreen ? style.logoGreen : style.logo} className="navbar-brand invisible" href="/">TODOAPP</a>
+                            :
+                            <a css={this.props.logoGreen ? style.logoGreen : style.logo} className="navbar-brand" href="/">TODOAPP</a>
+                        }
+                    </Link>
+                    
                     <div className="collapse navbar-collapse" id="navbarCollapse">
-                        <Link  to="/">
-                            <a css={style.logo} className="navbar-brand" href="/">TODOAPP</a>
-                        </Link>
+                        
+                        
+                        {this.props.noButton ? '' :  isAuthenticated ? authLinks : guestLinks  }
                     </div>
-                    { isAuthenticated ? authLinks : guestLinks }
+                    
                 </div>  
             </nav>
         )
     }
+    
 }
 
 const mapStateToProps = state => ({

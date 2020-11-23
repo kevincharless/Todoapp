@@ -1,24 +1,38 @@
-import React, { Fragment } from 'react';
-import Form from './Form';
-import Todos from './Todos'
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Header from '../layout/Header'
+import Sidebar from '../layout/Sidebar'
+import Form from '../todos/Form';
+import Todos from '../todos/Todos';
 
-export default function Dashboard() {
+export default function Dashboard(initialValue = false) {
+    const [activeSidebar,handleActiveSidebars] = React.useState (initialValue = false);
+
     const auth = useSelector(state => state.auth)
+
+    const handleActiveSidebar = React.useCallback(() => {
+        handleActiveSidebars(v => !v);
+    }, []);
+
 
     if (!auth.token) {
         return <Redirect to="/landingpage" />
     }
 
     return (
-        <div style={{backgroundColor: '#1b1b1b'}}>
-            <div className="container">
-                <Fragment>
-                    <Form />
-                    <Todos />
-                </Fragment>
+        <>
+            <Header handleActiveSidebar={handleActiveSidebar}  />
+            <Sidebar activeSidebar={activeSidebar} currentPath="/" />
+            <div className="container-fluid">
+                <div className="container pt-5 mt-5">
+                    <h1 className="font-weight-bold" style={{color: "#b3d146"}}>ToDO List</h1>
+                    <h4>Add An Item</h4>
+                </div>
+                <Form />
+                <Todos />
             </div>
-        </div>
+            
+        </>
     )
 }

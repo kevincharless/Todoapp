@@ -3,7 +3,8 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
-import EndContent from '../ReactComponents/Footer'
+
+import Header from '../layout/Header';
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
@@ -25,66 +26,82 @@ export class Login extends Component {
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
-
+    
     render() {
         const style = {
-            div: css`
-                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../../static/frontend/images/login.jpg');
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center center;
-                height: 92.1vh;
-            `,
-            heading: css`
-                color: #b3d146;
+            col: css`
+                color: #fcf9f9;
                 font-family: 'Roboto', sans-serif;
-                font-weight: bold;
-                font-size: 3em;
-                line-height: 1em;
-                text-transform: uppercase;
+                z-index: 3;
             `,
-            text: css`
-                color: white;
+            form: css`
                 font-family: 'Roboto', sans-serif;
-                font-weight: bold;
-                font-size: 1.5em;
-                line-height: 1em;
-                text-transform: uppercase;
             `,
-            input: css`
-                background: transparent;
-                color: white;
+            colAnimation: css`
+                left: 0;
+                min-width: 100%;
+                min-height: 100%;
                 font-family: 'Roboto', sans-serif;
-                border: 2px solid #b3d146;
+                background-color: #b3d146;
+                position: absolute;
+                z-index: 2;
+                
+                // animation: toLeft 1.0s forwards;
+                // animation-timing-function: linear;
+
+                // @keyframes toLeft {
+                //     from  {right:0vw; transform: scaleX(1.5); z-index: 1;}
+                //     to {right:1vw; transform: scaleX(1); z-index: 1;}
+                // }
+            `,
+            colButton: css`
+                left: 0;
+                min-width: 100%;
+                min-height: 100%;
+                font-family: 'Roboto', sans-serif;
+                background-color: invinsible;
+                position: absolute;
+                z-index: 4;
+            `,
+            buttonAnimation: css`
+                font-family: 'Roboto', sans-serif;
+                z-index: 4;
+                
+                animation: toLeftButton 1.0s forwards;
+                animation-timing-function: linear;
+
+                @keyframes toLeftButton {
+                    from { transform: scaleX(1.5); opacity: 0;}
+                    to {ransform: scaleX(1); opacity: 1; }
+                }
+
+                &:hover {
+                    color: #b3d146;
+                    background-color: #fcf9f9;
+                }
             `,
             button: css`
-                color: white;
                 background-color: #b3d146;
-                border: 2px solid #b3d146;
+                color: #fcf9f9;
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
+                font-size: 1.2em;
 
                 &:hover {
-                    color: white;
-                    background: transparent;
+                    color: #b3d146;
+                    background-color: #fcf9f9;
+                    border: 2px solid #b3d146
                 }
             `,
-            dontHave: css`
-                color: white;
+            text: css`
                 font-family: 'Roboto', sans-serif;
-                font-size: 1.2em;
-                line-height: 1em;
             `,
-            dontHaveButton: css`
-                color:  #b3d146;
+            heading: css`
+                color: #1b1b1b;
                 font-family: 'Roboto', sans-serif;
-                font-size: 1.2em;
-                line-height: 1em;
-
-                &:hover {
-                    color: white;
-                    text-decoration: none;
-                }
+            `,
+            paragraft: css`
+                color: #fcf9f9;
             `,
         }
 
@@ -92,53 +109,93 @@ export class Login extends Component {
             return <Redirect to="/" />;
         }
         const { username, password } = this.state;
+
         return (
             <>
-            <div css={style.div} className="py-4">
-                <div className="col-md-6 m-auto">
-                    <div className="card card-body mt-4 bg-transparent border-0">
-                        <h2 css={style.heading} className="text-center my-4">Login</h2>
-                        <form onSubmit={this.onSubmit}>
-                            <div className="form-group">
-                                <label css={style.text}>Username</label>
-                                <input
-                                    css={style.input}
-                                    type="text"
-                                    className="form-control"
-                                    name="username"
-                                    onChange={this.onChange}
-                                    value={username}
-                                />
-                            </div>
-                            
-                            <div className="form-group">
-                                <label css={style.text}>Password</label>
-                                <input
-                                    css={style.input}
-                                    type="password"
-                                    className="form-control"
-                                    name="password"
-                                    onChange={this.onChange}
-                                    value={password}
-                                />
-                            </div>
-                            
-                            <div className="form-group">
-                                <p css={style.dontHave}>
-                                    <button css={style.button} type="submit" className="btn mr-4">
-                                        Login
-                                    </button>
+            <Header noButton />
+            <div className="container-fluid" style={{height: "100vh"}}>
+                <div className="row" style={{minHeight: "100%"}}>
+                    <div className="col-xs-6 col-md-4 d-flex align-items-center p-5">
+                        <div css={style.colAnimation} className="d-flex align-items-center animate__animated animate__bounceInRight">
+                        </div>
 
-                                    Don't have an account? <Link to="/register" css={style.dontHaveButton}>Register</Link>
-
+                        <div css={style.colButton} className="d-flex align-items-center animate__animated animate__bounceInRight">
+                            <div className="container text-center w-100">
+                                <h1 css={style.text} className="text-#fcf9f9 font-weight-bold pt-5 invisible">
+                                    Hello, Friend!
+                                </h1>
+                                <p className="text-#fcf9f9 invisible">
+                                    Enter your personal details and start journey with us
                                 </p>
+                                <Link to="/register">
+                                    <button
+                                        css={style.buttonAnimation}
+                                        type="button"
+                                        className="btn btn-outline-light rounded-pill px-5 font-weight-bold">
+                                            Sign up
+                                    </button>
+                                </Link>
                             </div>
-                                
+                        </div>
+
+                        <div css={style.col} className="container text-center w-100">
+                            <h1 css={style.text} className="font-weight-bold pt-5">
+                                Hello, Friend!
+                            </h1>
+                            <p css={style.paragraft}>
+                                Enter your personal details and start journey with us
+                            </p>
+                            <button
+                                type="button"
+                                className="btn btn-outline-light rounded-pill px-5 font-weight-bold invisible">
+                                    Sign up
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="col-xs-12 col-md-8 d-flex align-items-center justify-content-center ">
+                        <form onSubmit={this.onSubmit} css={style.form} className="col-lg-8 d-flex">
+                            <div className="container text-center w-100">
+                                <h1 css={style.heading} className="font-weight-bold my-4">
+                                    Sign in
+                                </h1>
+                                <div className="input-group flex-nowrap bg-light rounded-pill my-4">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text bg-transparent border-0 material-icons" id="addon-wrapping">person</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control bg-transparent border-0"
+                                        placeholder="Username" aria-label="Username"
+                                        aria-describedby="addon-wrapping"
+                                        name="username"
+                                        onChange={this.onChange}
+                                        value={username}
+                                    />
+                                </div>
+
+                                <div className="input-group flex-nowrap bg-light rounded-pill my-4">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text bg-transparent border-0 material-icons" id="addon-wrapping">lock</span>
+                                    </div>
+                                    <input
+                                        type="password"
+                                        className="form-control bg-transparent border-0"
+                                        placeholder="Password"
+                                        aria-label="Password"
+                                        aria-describedby="addon-wrapping"
+                                        name="password"
+                                        onChange={this.onChange}
+                                        value={password}
+                                    />
+                                </div>
+
+                                <button css={style.button} type="submit" className="btn rounded-pill px-5">Sign in</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <EndContent />
             </>
         )
     }

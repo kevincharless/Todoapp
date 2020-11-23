@@ -4,7 +4,7 @@ import { jsx, css } from '@emotion/react'
 const Section = ({ bgGreen, heading, content }) => {
     const style = {
         bgWhite: css`
-            background-color: white;
+            background-color: #fcf9f9;
         `,
         bgGreen: css`
             background-color: #89a617;
@@ -13,7 +13,7 @@ const Section = ({ bgGreen, heading, content }) => {
             padding: 2.5em 0 0 0;
         `,
         headingBlack: css`
-            color: #1b1b1b;
+            color: #020205;
             margin-bottom: 0;
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
@@ -22,7 +22,7 @@ const Section = ({ bgGreen, heading, content }) => {
             letter-spacing: 0.01em;
         `,
         headingWhte: css`
-            color: white;
+            color: #fcf9f9;
             margin-bottom: 0;
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
@@ -34,13 +34,13 @@ const Section = ({ bgGreen, heading, content }) => {
             margin: 0.5em 0 1em 0;
         `,
         paragraphBlack: css`
-            color: #1b1b1b;
+            color: #020205;
             font-family: 'Roboto', sans-serif;
             font-size: 1.1em;
             letter-spacing: 0.01em;
         `,
         paragraphWhite: css`
-            color: white;
+            color: #fcf9f9;
             font-family: 'Roboto', sans-serif;
             font-size: 1.1em;
             letter-spacing: 0.01em;
@@ -51,7 +51,7 @@ const Section = ({ bgGreen, heading, content }) => {
         `
     }
     return (
-        <div css={bgGreen ? style.bgGreen : style.bgWhite}>
+        <div css={bgGreen ? style.bgGreen : style.bgWhite} className="container-fluid">
             <div data-aos="zoom-in" css={style.container} className="container">
                 <div className="row d-flex justify-content-center">
                     <h2 css={bgGreen ? style.headingWhte : style.headingBlack}>{ heading }</h2>

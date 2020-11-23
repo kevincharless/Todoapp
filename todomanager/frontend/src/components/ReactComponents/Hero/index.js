@@ -3,51 +3,53 @@ import { jsx, css } from '@emotion/react'
 
 const hero = () => {
     const style = {
-        animate: css`
-            position: relative;
-            animation-name: div;
-            animation-duration: 3s;
-            animation-direction: alternate;
-
-            @keyframes div {
-                from { right: -50px; opacity: 0.3; }
-                to   { right: 0 ; opacity: 1; }
-
-            }
-        `,
         topPage: css`
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../../../static/frontend/images/landingPage.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
-            height: 100vh;
+            height: 104vh;
         `,
         heading: css`
-            color: white;
+            padding-top: 50vh;
+            color: #fcf9f9;
             opacity: 0.65;
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
-            font-size: 6.5em;
+            font-size: 7vw;
             text-align: right;
             line-height: 1em;
             text-transform: uppercase;
             letter-spacing: 0.01em;
+
+            animation-name: div;
+            animation-duration: 1s;
+            animation-direction: alternate;
+
+            @keyframes div {
+                from { right: -50px; opacity: 0.3; }
+                to   { right: 0 ; opacity: 0.65; }
+
+            }
+        `,
+        hr: css`
+            border-top: 19px solid #b3d146;
         `   
     }
 
     return (
-        <div css={style.topPage} className="row">
-            <div css={style.animate} className="container">
-                <div className="col d-flex align-items-end text-right h-100">
-                    <div css={style.heading} className="ml-auto mb-4">
+        <div className="container-fluid" css={style.topPage}>
+            <div className="container">
+                <div className="row d-flex align-items-end text-right h-100">
+                    <div css={style.heading} className="col ml-auto mb-4">
                         <span className="d-block">Big Ideas,</span>
                         <span className="d-block">Creative People,</span>
                         <span className="d-block">New Technology.</span>
                     </div>
                 </div>
             </div>
+
         </div>
-        
     )
 }
 

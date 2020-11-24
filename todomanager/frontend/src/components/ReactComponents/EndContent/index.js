@@ -17,15 +17,15 @@ const Endcontent = () => {
                 color: #b3d146;
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
-                font-size: 3em;
-                line-height: 1.5em;
+                font-size: 2.8em;
+                line-height: 1.2em;
                 text-transform: uppercase;
             `,
         content: css`
             color: #fcf9f9;
             font-family: 'Roboto', sans-serif;
             font-weight: bold;
-            font-size: 1.5em;
+            font-size: 1.2em;
             line-height: 1em;
             text-transform: uppercase;
         `,
@@ -58,7 +58,7 @@ const Endcontent = () => {
                     </div>
                     <span css={style.content} className="d-block" data-aos="zoom-in-up">
                         <Link to="/login">
-                            <button css={style.button} type="button" className="btn btn-lg">
+                            <button css={style.button} type="button" className="btn btn-md">
                                 Get Started - It`s Free !
                             </button>
                         </Link>

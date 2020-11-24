@@ -21,12 +21,12 @@ const Carousel = () => {
             margin-right: auto;
         `,
         arrow: css`
+            top: 50%;
+            position: fixed;
             opacity: 1;
             width: 2vw;
             height: 2vw;
-            // left: 30px;
-            // right: 30px;
-
+        
             &:hover {
                 opacity: 0.5;
             }
@@ -61,13 +61,13 @@ const Carousel = () => {
             <div id="carouselExampleFade" className="container-fluid carousel slide carousel-fade" data-ride="carousel">
                 <div className="container">
                     <div data-aos="zoom-in-up" data-aos-delay="100" css={style.bgcarousel} className="row align-items-center carousel-inner mx-0">
-                        <div className="col-xs-6 col-sm-1">
-                            <a css={style.arrow} className="carousel-control-prev ml-4" href="#carouselExampleFade" role="button" data-slide="prev">
+                        <div className="col-1">
+                            <a css={style.arrow} className="carousel-control-prev ml-3" href="#carouselExampleFade" role="button" data-slide="prev">
                                 <span css={style.arrow} className="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span className="sr-only">Previous</span>
                             </a>
                         </div>
-                        <div className="col-xs-12 col-sm-10 d-flex align-items-center">
+                        <div className="col-10 d-flex align-items-center">
                             <div className="carousel-item active d-flex align-items-center">
                                 <div css={style.text} className="carousel-caption align-items-center w-50">
                                     <span css={style.heading} className="d-block">
@@ -102,8 +102,8 @@ const Carousel = () => {
                                 <img css={style.img} src="../../../static/frontend/images/content2-1.jpg" className="d-block mr-0" alt="..." />
                             </div>
                         </div>
-                        <div className="col-xs-6 col-sm-1">
-                            <a css={style.arrow} className="carousel-control-next mr-4" href="#carouselExampleFade" role="button" data-slide="next">
+                        <div className="col-1">
+                            <a css={style.arrow} className="carousel-control-next mr-3" href="#carouselExampleFade" role="button" data-slide="next">
                                 <span css={style.arrow} className="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span className="sr-only">Next</span>
                             </a>

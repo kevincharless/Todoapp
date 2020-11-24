@@ -4,9 +4,15 @@
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    width: 250px;
     min-height: 100vh;
+}
+
+@media(max-width:1000px) {
+    #sidebar {
+        position: fixed;
+        z-index: 999;
+    }
 }
 
 #sidebar.active {

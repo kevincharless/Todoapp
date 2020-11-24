@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { getTodos, deleteTodo, completedTodo } from '../../actions/todos';
 import { editTodo } from '../../actions/todoform';
+
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
 
@@ -29,6 +35,67 @@ export class Todos extends Component {
     componentDidMount() {
         this.props.getTodos();
     }
+
+    handleDeleteAll = () => {
+        this.props.deleteTodo(this.props.todos)
+    }
+
+    submit = (id, title) => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                const style = {
+                    textBlack: css`
+                        color: #020205;
+                    `,
+                    buttonNo: css`
+                        background-color: #fcf9f9;
+                        color: #020205;
+
+                        &:hover{
+                            border: 1px solid #020205;
+                            background-color: transparent;
+                            color: #020205;
+                        }
+                    `,
+                    buttonYes: css`
+                        background-color: #cd0a0a;
+                        color: #fcf9f9;
+
+                        &:hover{
+                            border: 1px solid #cd0a0a;
+                            background-color: transparent;
+                            color: #cd0a0a;
+                        }
+                    `,
+                }
+
+                return (
+                    <div className='custom-ui'>
+                        <div className="card rounded-lg p-5 d-flex justify-content-center text-center">
+                            <div className="d-flex justify-content-center">
+                                <FontAwesomeIcon icon={faExclamationTriangle} style={{fontSize: "6em", color: "#cd0a0a"}} />
+                            </div>
+                            <h1 css={style.textBlack} className="font-weight-bold pt-3">Are you sure?</h1>
+                            <p css={style.textBlack} className="">You want to delete<p css={style.textBlack} className="font-weight-bold m-0">{title}</p>from Todolist?</p>
+                            <div className="row">
+                                <button css={style.buttonNo} onClick={onClose} className="col btn rounded-lg mr-2 font-weight-bold">No</button>
+                                <button
+                                    onClick={() => {
+                                        this.props.deleteTodo(id)
+                                        onClose();
+                                    }}
+                                    className="col btn rounded-lg font-weight-bold"
+                                    css={style.buttonYes}
+                                >
+                                Yes, Delete it!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    );
+                }
+            });
+        };
 
     render() {
         const style = {
@@ -91,8 +158,8 @@ export class Todos extends Component {
                         <div css={style.todos}> 
                             { this.props.todos.map(todo => (
                                 <>
-                                    <div onClick={this.props.completedTodo.bind(this, todo)} className="d-flex flex-wrap">
-                                        <div style={{flex:1}} className="d-flex justify-content-center align-items-center">
+                                    <div className="d-flex flex-wrap">
+                                        <div onClick={this.props.completedTodo.bind(this, todo)} style={{flex:1}} className="d-flex justify-content-center align-items-center">
                                             {todo.completed === false ? (
                                                 ""
                                             ) : (
@@ -112,16 +179,7 @@ export class Todos extends Component {
                                         </div>
 
                                         {todo.completed ? (
-                                            <div style={{flex:1}} className="d-flex align-items-center">
-                                                <button css={style.buttonEdit} onClick={this.props.editTodo.bind(this, todo.title, todo.id)} className="btn btn-sm d-flex justify-content-center align-items-center invisible">
-                                                    <span className="material-icons d-block">
-                                                        create
-                                                    </span>
-                                                    <span className="d-block">
-                                                        Edit
-                                                    </span>
-                                                </button>
-                                            </div>
+                                            <></>
                                         ):(
                                             <div style={{flex:1}} className="d-flex align-items-center">
                                                 <button css={style.buttonEdit} onClick={this.props.editTodo.bind(this, todo.title, todo.id)} className="btn btn-sm d-flex justify-content-center align-items-center">
@@ -136,7 +194,11 @@ export class Todos extends Component {
                                         )}
 
                                         <div style={{flex:1}} className="d-flex align-items-center mx-2">
-                                            <button css={style.buttonDelete} onClick={this.props.deleteTodo.bind(this, todo.id)} className="btn btn-sm d-flex justify-content-center align-items-center">
+                                            <button
+                                            css={style.buttonDelete}
+                                            onClick={ () => this.submit(todo.id, todo.title)}
+                                            // onClick={this.props.deleteTodo.bind(this, todo.id)}
+                                            className="btn btn-sm d-flex justify-content-center align-items-center">
                                                 <span className="material-icons d-block">
                                                     delete
                                                 </span>

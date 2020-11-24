@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import  { logout } from '../../actions/auth';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
 
@@ -24,6 +29,64 @@ export class Header extends Component {
     handleLogout = () => {
         this.props.logout();
     }
+
+    submit = () => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                const style = {
+                    textBlack: css`
+                        color: #020205;
+                    `,
+                    buttonNo: css`
+                        background-color: #fcf9f9;
+                        color: #020205;
+
+                        &:hover{
+                            border: 1px solid #020205;
+                            background-color: transparent;
+                            color: #020205;
+                        }
+                    `,
+                    buttonYes: css`
+                        background-color: #cd0a0a;
+                        color: #fcf9f9;
+
+                        &:hover{
+                            border: 1px solid #cd0a0a;
+                            background-color: transparent;
+                            color: #cd0a0a;
+                        }
+                    `,
+                }
+
+                return (
+                    <div className='custom-ui'>
+                        <div className="card rounded-lg p-5 d-flex justify-content-center text-center">
+                            <div className="d-flex justify-content-center">
+                                <FontAwesomeIcon icon={faExclamationTriangle} style={{fontSize: "6em", color: "#cd0a0a"}} />
+                            </div>
+                            <h1 css={style.textBlack} className="font-weight-bold pt-3">Are you sure?</h1>
+                            <p css={style.textBlack} className="p-2">You want to logout from this app?</p>
+                            <div className="row">
+                                <button css={style.buttonNo} onClick={onClose} className="col btn rounded-lg mr-2 font-weight-bold">No</button>
+                                <button
+                                    onClick={() => {
+                                        this.handleLogout();
+                                        onClose();
+                                    }}
+                                    className="col btn rounded-lg font-weight-bold"
+                                    css={style.buttonYes}
+                                >
+                                Yes, Logout!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    );
+                }
+            });
+        };
+
 
     componentDidMount() {
         document.addEventListener('scroll', () => {
@@ -147,7 +210,7 @@ export class Header extends Component {
                     </strong>
                 </span>
                 <li className="nav-item">
-                    <button css={style.btnLogout} onClick={this.handleLogout} className="nav-link btn btn-sm">
+                    <button css={style.btnLogout} onClick={this.submit} className="nav-link btn btn-sm">
                         Logout
                     </button>
                 </li>
@@ -183,9 +246,9 @@ export class Header extends Component {
                             ""
                         }
                 <div className="container">
-                    <Link to="/" className={isAuthenticated ? "invisible" : "visible"}>
+                    <Link to="/" className={isAuthenticated ? "d-none" : "d-block"}>
                         {this.props.headerLanding ?
-                            <a css={this.props.logoGreen ? style.logoGreen : style.logo} className="navbar-brand invisible" href="/">TODOAPP</a>
+                            <a css={this.props.logoGreen ? style.logoGreen : style.logo} className="navbar-brand d-none" href="/">TODOAPP</a>
                             :
                             <a css={this.props.logoGreen ? style.logoGreen : style.logo} className="navbar-brand" href="/">TODOAPP</a>
                         }

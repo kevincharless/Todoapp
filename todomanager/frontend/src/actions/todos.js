@@ -70,6 +70,7 @@ export const updateTodo = (id, title) => (dispatch, getState) => {
         completed: false
     } ,tokenConfig(getState))
     .then(res => {
+        dispatch(createMessage({ editTodo: 'Todo Editted' }));
         dispatch({
             type: UPDATE_TODO,
             payload: res.data

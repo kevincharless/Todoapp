@@ -18,6 +18,7 @@ export class Form extends Component {
         completed: false,
         formState: 'create',
     }
+    
 
     componentDidUpdate = (prevprops, prevstate) => {
         if (prevstate.formState != this.props.todoform.formState) {

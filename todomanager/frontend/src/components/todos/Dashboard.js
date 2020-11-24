@@ -15,7 +15,6 @@ export default function Dashboard(initialValue = false) {
         handleActiveSidebars(v => !v);
     }, []);
 
-
     if (!auth.token) {
         return <Redirect to="/landingpage" />
     }
@@ -28,9 +27,10 @@ export default function Dashboard(initialValue = false) {
                 <div className="container pt-5 mt-5">
                     <h1 className="font-weight-bold" style={{color: "#b3d146"}}>ToDO List</h1>
                     <h4>Add An Item</h4>
+                    <button onClick={handleDeleteAll}>Delete all</button>
                 </div>
                 <Form />
-                <Todos />
+                <Todos handleDeleteAll={this.handleDeleteAll} />
             </div>
             
         </>

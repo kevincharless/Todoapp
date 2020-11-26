@@ -110,6 +110,11 @@ export class Sidebar extends Component {
                     background: transparent;
                 }
             `,
+            linkHover: css`
+                :hover{
+                    text-decoration: none;
+                }
+            `,
         }
         
         const { isAuthenticated, user } = this.props.auth;
@@ -123,26 +128,46 @@ export class Sidebar extends Component {
                     <div className="card rounded-lg">
                         <div className="card-body p-0">
                         <ul className="list-unstyled components rounded-lg p-2 my-0">
-                            <Link to="/">
+                            <Link css={style.linkHover} to="/">
                                 <li className={`pb-1 ${this.props.currentPath === "/" ? "active" : "" }`}>
-                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" className="rounded-lg">Dashboard</a>
+                                    <button href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" className="btn btn-block rounded-lg d-flex align-items-center mr-1">
+                                        <span className="material-icons mr-1 ">
+                                            dashboard
+                                        </span>
+                                        Dashboard
+                                    </button>
                                 </li>
                             </Link>
-                            <Link to="/landingpage">
-                                <li className={this.props.currentPath === "/landingpage" ? "active" : "" }>
-                                    <a href="#" className="rounded-lg pb-1">Site Home</a>
+                            <Link css={style.linkHover} to="/landingpage">
+                                <li className={`pb-1 ${this.props.currentPath === "/landingpage" ? "active" : "" }`}>
+                                    <button className="btn btn-block rounded-lg d-flex align-items-center mr-1">
+                                        <span className="material-icons mr-1">
+                                            home
+                                        </span>
+                                        Site Home
+                                    </button>
                                 </li>
                             </Link>
-                            
-                            <li>
-                                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" className="rounded-lg pb-1">Pages</a>
-                            </li>
-                            <li>
-                                <a href="#" className="rounded-lg pb-1">Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="#" className="rounded-lg">Contact</a>
-                            </li>
+                            <Link css={style.linkHover} to="/about">
+                                <li className={`pb-1 ${this.props.currentPath === "/about" ? "active" : "" }`}>
+                                    <button className="btn btn-block rounded-lg d-flex align-items-center mr-1">
+                                        <span className="material-icons mr-1">
+                                            people_alt
+                                        </span>
+                                        About Us
+                                    </button>
+                                </li>
+                            </Link>
+                            <Link css={style.linkHover} to="/faq">
+                                <li className={`pb-1 ${this.props.currentPath === "/faq" ? "active" : "" }`}>
+                                    <button className="btn btn-block rounded-lg d-flex align-items-center mr-1">
+                                        <span className="material-icons mr-1">
+                                            help
+                                        </span>
+                                        FAQ
+                                    </button>
+                                </li>
+                            </Link>
                         </ul>
                         </div>
                     </div>
@@ -155,51 +180,8 @@ export class Sidebar extends Component {
         );
 
         return (
-            // <nav css={this.state.isTop ? style.nav : style.navactive } className={this.state.isTop ? 'navbar navbar-expand navbar-toggleable-xl navbar-inverse fixed-top navbar-transparent' : 'navbar navbar-expand navbar-toggleable-xl navbar-inverse fixed-top'}>
-            //     <div className="container">
-            //         <Link  to="/">
-            //             {this.props.headerLanding ?
-            //                 <a css={style.logoLanding} className="navbar-brand" href="/">TODOAPP</a> 
-            //                 :
-            //                 <a css={this.props.logoGreen ? style.logoGreen : style.logo} className="navbar-brand" href="/">TODOAPP</a>
-            //             }
-            //         </Link>
-                    
-            //         <div className="collapse navbar-collapse" id="navbarCollapse">
-                        
-            //             {this.props.noButton ? '' :  isAuthenticated ? authLinks : guestLinks  }
-            //         </div>
-                    
-            //     </div>  
-            // </nav>
-
             <div className="wrapper">
                 {isAuthenticated ? authLinks : guestLinks}
-                
-
-                {/* <div id="content">
-                    
-                        <div className="container-fluid">
-                            <div className="row">
-                                <button onClick={this.activeSidebar.bind(this)} type="button" id="sidebarCollapse" className="btn btn-info rounded-circle">
-                                    <span className="material-icons">
-                                        menu
-                                    </span>
-                                </button>
-                            </div>
-                            <div className="row">
-                                <Form />
-                                
-                            </div>
-                            <div className="row">
-                            <Todos />
-                            </div>
-                            
-                            
-                        </div>
-                    
-                </div> */}
-
             </div>
         )
     }

@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import BackToTop from "react-back-to-top-button";
 
 import Header from '../layout/Header';
+import Sidebar from '../layout/Sidebar';
 import Hero from '../ReactComponents/Hero'
 import Content from '../ReactComponents/Content'
 import Content2 from '../ReactComponents/Content2'
 import Section from '../ReactComponents/Section'
 import Carousel from '../ReactComponents/Carousel'
 import Endcontent from '../ReactComponents/Endcontent'
-import Sidebar from '../layout/Sidebar';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
 
 export default class LandingPage extends Component {
     state = {
@@ -20,30 +24,42 @@ export default class LandingPage extends Component {
     render() {
         return (
             <>
-            <Header headerLanding handleActiveSidebar={this.handleActiveSidebar} activeSidebar={this.state.activeSidebar} />
+            <BackToTop
+                showOnScrollUp={false}
+                showAt={100}
+                speed={1500}
+                easing="easeInOutQuint"
+                style={{zIndex: "999", borderRadius: "50%", cursor: "default"}}
+            >
+                <button className="btn btn-transparent p-0 m-0 rounded-circle" style={{borderRadius: "50%", cursor: "default"}}>
+                    <FontAwesomeIcon icon={faAngleUp} style={{width: "1.5em",  height: "1.5em",fontSize: "2em", color: "#b3d146", backgroundColor: "#020205", borderRadius: "50%", cursor: "pointer"}} />
+                </button>
+            </BackToTop>
+            <Header headerLanding logoGreen handleActiveSidebar={this.handleActiveSidebar} activeSidebar={this.state.activeSidebar} />
             <Sidebar activeSidebar={this.state.activeSidebar} currentPath="/landingpage" />
             <div className="container-fluid p-0 m-0">
                 <Hero />
                 <Content
-                    heading="First featurette heading. It’ll blow your mind."
-                    content="Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo." 
-                    image="../static/frontend/images/content1.png"
+                    heading="Make Your Schedule Ordered"
+                    content="Whenever you are busy, you will not be confused because you have made a regular schedule. Todoapp helps you to organize your daily activity. 
+                    " 
+                    image="../static/frontend/images/content1_1.svg"
                 />
                 <Content
-                    heading="First featurette heading. It’ll blow your mind."
-                    content="Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo." 
-                    image="../static/frontend/images/content1.png"
+                    heading="Start Planning and Do it Right Now"
+                    content="Todoapp helps you to be more productive all the time. Let's design your plan and achieve your dreams now"
+                    image="../static/frontend/images/content1_2.svg"
                     imageStart
                     bgGreen
                 />
                 <Content
-                    heading="First featurette heading. It’ll blow your mind."
-                    content="Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo." 
-                    image="../static/frontend/images/content1.png"
+                    heading="Your Privacy is our Top Priority"
+                    content="All your tasks are always safe and no one have an access to see or making a change on it" 
+                    image="../static/frontend/images/content1_3.svg"
                 />
                 <Section 
                     heading="See how it works"
-                    content="Go from idea to action in seconds with Todoapp’s intuitively simple boards, lists, and cards."
+                    content="Go from idea to action in seconds with Todoapp’s. The app where has a great and simple design."
                 />
                 <Carousel />
                 <Section 
@@ -55,28 +71,28 @@ export default class LandingPage extends Component {
                     <div className="container">
                         <div className="row">
                             <Content2
-                                img="../../../static/frontend/images/content2-1.jpg"
-                                heading="The Team Playbook"
+                                img="../../../static/frontend/images/content2_1.svg"
+                                heading="Simple and Minimalism Design"
                                 paragraph="
-                                    It’s easy to get your team up and running with Todoapp. We’ve collected all of the boards and tools your team needs to succeed in one handy resource.
+                                    Great design make user easy to use the application and can enjoy when using it.
                                 "
-                                button="Make A Plan"
+                                button="Start Using"
                             />
                             <Content2
-                                img="../../../static/frontend/images/content2-2.jpg"
+                                img="../../../static/frontend/images/content2_2.svg"
                                 heading="A Productivity Platform"
                                 paragraph="
-                                    Integrate the apps your team already uses directly into your workflow. Power-Ups turn Todoapp boards into living applications to meet your team's unique business needs.
+                                    Application to keep you productive all the time.
                                 "
-                                button="Power-Up Your Workflow"
+                                button="Let's be Productive"
                             />
                             <Content2
-                                img="../../../static/frontend/images/content2-3.jpg"
+                                img="../../../static/frontend/images/content2_3.svg"
                                 heading="Always In Sync"
                                 paragraph="
-                                    No matter where you are, Todoapp stays in sync across all of your devices. Collaborate with your team anywhere, from sitting on the bus to sitting on the beach.
+                                    No matter where you are, Todoapp stays in sync across all of your devices. See your Tasks, from sitting on the bus to sitting on the beach.
                                 "
-                                button="Start doing"
+                                button="Stay in Sync Now"
                             />
                         </div>
                     </div>

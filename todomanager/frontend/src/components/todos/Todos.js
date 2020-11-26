@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { getTodos, deleteTodo, completedTodo } from '../../actions/todos';
 import { editTodo } from '../../actions/todoform';
+import Form from '../todos/Form';
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -36,11 +37,88 @@ export class Todos extends Component {
         this.props.getTodos();
     }
 
-    handleDeleteAll = () => {
-        this.props.deleteTodo(this.props.todos)
+    handleSelectedDelete = (selectedId) => {
+
     }
 
-    submit = (id, title) => {
+    handleDeleteAll = () => {
+        const todos = this.props.todos
+
+        todos.map(todo => (
+            this.props.deleteTodo(todo.id)
+        ))
+    }
+
+    deleteTodoAll = () => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                const style = {
+                    textBlack: css`
+                        color: #020205;
+                    `,
+                    buttonNo: css`
+                        background-color: #fcf9f9;
+                        color: #020205;
+
+                        &:hover{
+                            border: 1px solid #020205;
+                            background-color: transparent;
+                            color: #020205;
+                        }
+                    `,
+                    buttonYes: css`
+                        background-color: #cd0a0a;
+                        color: #fcf9f9;
+
+                        &:hover{
+                            border: 1px solid #cd0a0a;
+                            background-color: transparent;
+                            color: #cd0a0a;
+                        }
+                    `,
+                }
+
+                return (
+                    <div className='custom-ui'>
+                        <div className="card rounded-lg p-5 d-flex justify-content-center text-center">
+                            <div className="d-flex justify-content-center">
+                                <FontAwesomeIcon icon={faExclamationTriangle} style={{fontSize: "6em", color: "#cd0a0a"}} />
+                            </div>
+                            <h1 css={style.textBlack} className="font-weight-bold pt-3">Are you sure?</h1>
+                            <p css={style.textBlack} className="">You want to delete all from Todolist?</p>
+                            
+                            <form onSubmit={() => {
+                                this.handleDeleteAll()
+                                onClose();
+                            }}>
+                                <div class="row form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="remember" required /> I agree to delete all.
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Check this checkbox to continue.</div>
+                                    </label>
+                                </div>
+                                
+                                <div className="row">
+                                    <button css={style.buttonNo} onClick={onClose} className="col btn rounded-lg mr-2 font-weight-bold">No</button>
+                                    
+                                    <button
+                                        type="submit"
+                                        className="col btn rounded-lg font-weight-bold"
+                                        css={style.buttonYes}
+                                    >
+                                    Yes, Delete it!
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    );
+                }
+            });
+        };
+
+    deleteTodo = (id, title) => {
         confirmAlert({
             customUI: ({ onClose }) => {
                 const style = {
@@ -150,12 +228,35 @@ export class Todos extends Component {
             text: css`
                 font-family: 'Roboto', sans-serif;
             `,
+            divTitle: css`
+                word-break: break-all;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            `,
+            ceklis: css`
+                &:hover {
+                    cursor: pointer;
+                }
+            `,
         }
         return (
             <Fragment>
                 <div css={style.div} className="container">
-                    <div className="container">
-                        <div css={style.todos}> 
+                    <div css={style.todos}>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col d-flex align-items-center my-0">
+                                    <h4 className="my-0">Add An Item</h4>
+                                </div>
+                                <div className="col">
+                                <div className="text-right">
+                                    { this.props.todos.length != 0 ? <button css={style.buttonDelete} onClick={this.deleteTodoAll} className="btn pull-right">Delete All</button> : <></>}
+                                </div>
+                            </div>
+                        </div>
+                        <Form />
                             { this.props.todos.map(todo => (
                                 <>
                                     <div className="d-flex flex-wrap">
@@ -163,17 +264,17 @@ export class Todos extends Component {
                                             {todo.completed === false ? (
                                                 ""
                                             ) : (
-                                                <span className="material-icons">
+                                                <span css={style.ceklis} className="material-icons">
                                                     check
                                                 </span>
                                             )}
                                         </div>
 
-                                        <div onClick={this.props.completedTodo.bind(this, todo)} style={{flex:12}} className="d-flex align-items-center">
+                                        <div css={style.divTitle} onClick={this.props.completedTodo.bind(this, todo)} style={{flex:12}} className="d-flex align-items-center">
                                             {todo.completed === false ? (
-                                                <span>{todo.title}</span>
+                                                <span css={style.divTitle}>{todo.title}</span>
                                             ) : (
-                                                <strike>{todo.title}</strike>
+                                                <strike css={style.divTitle}>{todo.title}</strike>
                                             )}
                                             
                                         </div>
@@ -196,8 +297,7 @@ export class Todos extends Component {
                                         <div style={{flex:1}} className="d-flex align-items-center mx-2">
                                             <button
                                             css={style.buttonDelete}
-                                            onClick={ () => this.submit(todo.id, todo.title)}
-                                            // onClick={this.props.deleteTodo.bind(this, todo.id)}
+                                            onClick={ () => this.deleteTodo(todo.id, todo.title)}
                                             className="btn btn-sm d-flex justify-content-center align-items-center">
                                                 <span className="material-icons d-block">
                                                     delete

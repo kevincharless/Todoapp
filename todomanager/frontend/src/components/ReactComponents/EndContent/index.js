@@ -52,12 +52,12 @@ const Endcontent = () => {
                         Start Planning Today
                     </span>
                     <div className="d-flex justify-content-center">
-                        <span css={style.content} className="d-flex justify-content-center w-50">
-                            Sign up and join over 1,000,000 teams worldwide who are using Todoapp to get more done.
+                        <span css={style.content} className="d-flex justify-content-center w-50 pt-1">
+                            Sign up and being people who are using Todoapp to get more productive.
                         </span>
                     </div>
                     <span css={style.content} className="d-block" data-aos="zoom-in-up">
-                        <Link to="/login">
+                        <Link to="/register">
                             <button css={style.button} type="button" className="btn btn-md">
                                 Get Started - It`s Free !
                             </button>

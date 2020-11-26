@@ -114,7 +114,7 @@ export class Header extends Component {
             logo: css`
                 color: #fcf9f9;
                 font-family: 'Roboto', sans-serif;
-                font-size: 2em;
+                font-size: 1.6em;
                 font-weight: bold;
 
                 &:hover {
@@ -124,7 +124,7 @@ export class Header extends Component {
             logoGreen: css`
                 color: #b3d146;
                 font-family: 'Roboto', sans-serif;
-                font-size: 2em;
+                font-size: 1.6em;
                 font-weight: bold;
 
                 &:hover {
@@ -134,7 +134,7 @@ export class Header extends Component {
             logoLanding: css`
                 color: #fcf9f9;
                 font-family: 'Roboto', sans-serif;
-                font-size: 2em;
+                font-size: 1.6em;
                 font-weight: bold;
 
                 &:hover {
@@ -144,7 +144,7 @@ export class Header extends Component {
             nav: css`
                 color: #b3d146;
                 font-family: 'Roboto', sans-serif;
-                font-size: 1.2em;
+                font-size: 1em;
                 font-weight: bold;
             `,
             navactive: css`
@@ -194,7 +194,7 @@ export class Header extends Component {
                 background-color: #b3d146;
 
                 &:hover {
-                    color: white;
+                    color: #fcf9f9;
                     
                 }
             `,
@@ -237,7 +237,7 @@ export class Header extends Component {
         return (
             <nav css={this.state.isTop ? style.nav : style.navactive } className={this.state.isTop ? 'navbar navbar-expand navbar-toggleable-xl navbar-inverse fixed-top navbar-transparent' : 'navbar navbar-expand navbar-toggleable-xl navbar-inverse fixed-top'}>
                 { isAuthenticated ? 
-                            <button css={style.buttonSidebar} onClick={handleChange} type="button" id="sidebarCollapse" className="btn rounded-circle">
+                            <button css={style.buttonSidebar} onClick={handleChange} type="button" id="sidebarCollapse" className="btn rounded-circle d-flex align-items-center py-2">
                                 <span className="material-icons">
                                     menu
                                 </span>
@@ -245,12 +245,12 @@ export class Header extends Component {
                             :
                             ""
                         }
-                <div className="container">
-                    <Link to="/" className={isAuthenticated ? "d-none" : "d-block"}>
+                <>
+                    <Link to="/" className={this.props.noLogo ? "d-none" : "d-block ml-4"} >
                         {this.props.headerLanding ?
-                            <a css={this.props.logoGreen ? style.logoGreen : style.logo} className="navbar-brand d-none" href="/">TODOAPP</a>
+                            <p css={style.logoLanding} className="navbar-brand p-0 m-0" href="/">TODOAPP</p>
                             :
-                            <a css={this.props.logoGreen ? style.logoGreen : style.logo} className="navbar-brand" href="/">TODOAPP</a>
+                            <p css={this.props.logoGreen ? style.logoGreen : style.logo} className="navbar-brand p-0 m-0" href="/">TODOAPP</p>
                         }
                     </Link>
                     
@@ -260,7 +260,7 @@ export class Header extends Component {
                         {this.props.noButton ? '' :  isAuthenticated ? authLinks : guestLinks  }
                     </div>
                     
-                </div>  
+                </>  
             </nav>
         )
     }

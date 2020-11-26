@@ -65,9 +65,6 @@ export class Form extends Component {
 
     render() {
         const style = {
-            div: css`
-                padding-bottom: 1em;
-            `,
             button: css`
                 color: #fcf9f9;
                 background-color: #b3d146;
@@ -85,7 +82,6 @@ export class Form extends Component {
             buttonCancel: css`
                 color: #fcf9f9;
                 background-color: #cd0a0a;;
-                font-size: 1em;
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
 
@@ -98,7 +94,7 @@ export class Form extends Component {
 
         const { title } = this.state
         return (
-            <div css={style.div} className="container">
+            <div className="container px-0 py-3">
                 <div>
                     <div>
                         <form onSubmit={this.onSubmit} id="form">
@@ -116,60 +112,19 @@ export class Form extends Component {
                                         />
                                 </div>
                                 {this.props.todoform.formState === "edit" && (
-                                    <div css={style.divCancel} >
-                                        <button css={style.buttonCancel} onClick={this.props.resetTodo.bind(this)} className="btn" type="button" name="Cancel">Cancel Edit</button>
+                                    <div css={style.divCancel} style={{flex: 2}} >
+                                        <button css={style.buttonCancel} onClick={this.props.resetTodo.bind(this)} className="btn w-100" type="button" name="Cancel">Cancel Edit</button>
                                     </div>
                                 )}
 
-                                <div style={{flex: 2}}>
-                                    <button css={style.button} className="btn px-4" type="submit" name="Add">Submit</button>
+                                <div style={{flex: 1}}>
+                                    <button css={style.button} className="btn px-5" type="submit" name="Add">Submit</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-
-                    
-                </div>
-                
-                </div>
-
-
-
-
-
-
-            // <div className="card card-body mt-4 mb-4">
-            //     <h2>Add Todo</h2>
-            //     <form onSubmit={this.onSubmit}>
-            //         <div className="form-group">
-            //             <label>title</label>
-            //             <input 
-            //                 className="form-control"
-            //                 type="text"
-            //                 name="title"
-            //                 onChange={this.onChange}
-            //                 value={title}
-            //             />
-            //         </div>
-            //         <div className="bootstrap-switch-square">
-            //             <label>Completed</label>
-            //             <input 
-            //                 type="checkbox"
-            //                 data-toggle="switch"
-            //                 name="Resend"
-            //                 id="Resend"
-            //                 onChange={this.onChange}
-            //                 value={completed}
-            //                 />
-            //         </div>
-                
-            //         <div className="form-group">
-            //             <button type="submit" className="btn btn-primary">
-            //                 Submit
-            //             </button>
-            //         </div>
-            //     </form>
-            // </div>
+                </div>    
+            </div>
         )
     }
 }

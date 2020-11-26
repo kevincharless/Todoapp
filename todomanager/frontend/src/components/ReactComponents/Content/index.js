@@ -10,7 +10,7 @@ const Content = ({ heading, content, image, imageStart, bgGreen }) => {
             background-color: #89a617;
         `,
         container: css`
-            color: #f2f4f7;
+            color: #fcf9f9;
             padding: 5em 0;
         `,
         img: css`
@@ -44,7 +44,7 @@ const Content = ({ heading, content, image, imageStart, bgGreen }) => {
                         </p>
                     </div>
                     <div className={`col-md-5 ${ imageStart ? "order-1": "order-2" }`}>
-                        <img css={style.img} src={ image } alt="ini foto" />
+                        <img css={style.img} src={ image } alt="Illustration" />
                     </div>
                 </div>
             </div>

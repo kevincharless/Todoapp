@@ -13,12 +13,12 @@ const Footer = () => {
         contactUs: css`
             color: #b3d146;
             font-family: 'Roboto', sans-serif;
-            text-size: 1.5em;
+            font-size: 1em;
         `,
         contactUsButton: css`
             color: #b3d146;
             font-family: 'Roboto', sans-serif;
-            text-size: 1.5em;
+            font-size: 1em;
 
             &:hover {
                 color: #fcf9f9;
@@ -28,12 +28,12 @@ const Footer = () => {
         p: css`
             color: #fcf9f9;
             font-family: 'Roboto', sans-serif;
-            text-size: 1.5em;
+            font-size: 1em;
         `,
         pButton: css`
             color: #fcf9f9;
             font-family: 'Roboto', sans-serif;
-            text-size: 1.5em;
+            font-size: 1em;
 
             &:hover {
                 color: #b3d146;
@@ -47,10 +47,7 @@ const Footer = () => {
                 <div className="container">
                     <div className="ml-auto">
                         <span css={style.contactUs} className="mr-2 p-0">
-                            @ 2020  
-                            <Link to="/landingpage">
-                                <button css={style.contactUsButton} className="btn btn-link ml-1 px-0">Todoapp</button>
-                            </Link>
+                            @ 2020  Todoapp
                         </span>
 
                         <span css={style.p} className="mx-2 p-0">
@@ -62,8 +59,18 @@ const Footer = () => {
                         </span>
 
                         <span css={style.p} className="mx-2 p-0">
-                            <Link to="/landingpage">
+                            <Link to="/faq">
                                 <button css={style.pButton} className="btn btn-link ml-1 px-0">FAQ</button>
+                            </Link>
+                        </span>
+
+                        <span css={style.p} className="mx-2 p-0">
+                            |
+                        </span>
+
+                        <span css={style.p} className="mx-2 p-0">
+                            <Link to="/about">
+                                <button css={style.pButton} className="btn btn-link ml-1 px-0">About Us</button>
                             </Link>
                         </span>
                     </div>

@@ -16,7 +16,7 @@ const hero = () => {
             opacity: 0.65;
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
-            font-size: 7vw;
+            font-size: 6vw;
             text-align: right;
             line-height: 1em;
             text-transform: uppercase;
@@ -42,9 +42,9 @@ const hero = () => {
             <div className="container">
                 <div className="row d-flex align-items-end text-right h-100">
                     <div css={style.heading} className="col ml-auto mb-4">
-                        <span className="d-block">Big Ideas,</span>
-                        <span className="d-block">Creative People,</span>
-                        <span className="d-block">New Technology.</span>
+                        <span className="d-block">Start Planning,</span>
+                        <span className="d-block">Being Productive,</span>
+                        <span className="d-block">Achieve Your Dream.</span>
                     </div>
                 </div>
             </div>

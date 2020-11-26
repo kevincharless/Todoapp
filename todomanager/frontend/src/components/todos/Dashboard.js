@@ -21,16 +21,15 @@ export default function Dashboard(initialValue = false) {
 
     return (
         <>
-            <Header handleActiveSidebar={handleActiveSidebar}  />
+            <Header handleActiveSidebar={handleActiveSidebar} noLogo />
             <Sidebar activeSidebar={activeSidebar} currentPath="/" />
             <div className="container-fluid">
                 <div className="container pt-5 mt-5">
-                    <h1 className="font-weight-bold" style={{color: "#b3d146"}}>ToDO List</h1>
-                    <h4>Add An Item</h4>
-                    <button onClick={handleDeleteAll}>Delete all</button>
+                    <div className="container">
+                        <h1 className="font-weight-bold" style={{color: "#b3d146"}}>ToDO List</h1>
+                    </div>
                 </div>
-                <Form />
-                <Todos handleDeleteAll={this.handleDeleteAll} />
+                <Todos />
             </div>
             
         </>

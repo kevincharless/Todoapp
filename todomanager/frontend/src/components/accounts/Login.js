@@ -90,7 +90,7 @@ export class Login extends Component {
                 &:hover {
                     color: #b3d146;
                     background-color: #fcf9f9;
-                    border: 2px solid #b3d146
+                    border: 2px solid #b3d146;
                 }
             `,
             text: css`
@@ -102,6 +102,17 @@ export class Login extends Component {
             `,
             paragraft: css`
                 color: #fcf9f9;
+            `,
+            divIcon: css`
+                border: none;
+                background-color: #fff;
+                border-radius: 100% 0% 0% 100%;
+            `,
+            divInput: css`
+                max-width: 100%;
+                border: none;
+                background-color: #fff;
+                border-radius: 0% 100% 100% 0%;
             `,
         }
 
@@ -159,35 +170,46 @@ export class Login extends Component {
                                 <h1 css={style.heading} className="font-weight-bold my-4">
                                     Sign in
                                 </h1>
-                                <div className="input-group flex-nowrap bg-light rounded-pill my-4">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text bg-transparent border-0 material-icons" id="addon-wrapping">person</span>
+
+                                <div className="row no-gutters mt-4 align-items-center justify-content-center">
+                                    <div className="col-auto">
+                                        <div className="border-0 rounded-pill mr-n2" >
+                                            <span css={style.divIcon} className="input-group-text material-icons">person</span>
+                                        </div>
                                     </div>
-                                    <input
-                                        type="text"
-                                        className="form-control bg-transparent border-0"
-                                        placeholder="Username" aria-label="Username"
-                                        aria-describedby="addon-wrapping"
-                                        name="username"
-                                        onChange={this.onChange}
-                                        value={username}
-                                    />
+                                    <div className="col-10">
+                                        <input 
+                                            css={style.divInput}
+                                            className="form-control border-secondary rounded-pill"
+                                            type="text"
+                                            placeholder="Username" aria-label="Username"
+                                            aria-describedby="addon-wrapping"
+                                            name="username"
+                                            onChange={this.onChange}
+                                            value={username}
+                                        />
+                                    </div>
                                 </div>
 
-                                <div className="input-group flex-nowrap bg-light rounded-pill my-4">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text bg-transparent border-0 material-icons" id="addon-wrapping">lock</span>
+                                <div className="row no-gutters my-4 align-items-center justify-content-center">
+                                    <div className="col-auto">
+                                        <div className="border-0 rounded-pill mr-n2" >
+                                            <span css={style.divIcon} className="input-group-text material-icons">lock</span>
+                                        </div>
                                     </div>
-                                    <input
-                                        type="password"
-                                        className="form-control bg-transparent border-0"
-                                        placeholder="Password"
-                                        aria-label="Password"
-                                        aria-describedby="addon-wrapping"
-                                        name="password"
-                                        onChange={this.onChange}
-                                        value={password}
-                                    />
+                                    <div className="col-10">
+                                        <input 
+                                            css={style.divInput}
+                                            className="form-control border-secondary rounded-pill"
+                                            type="password"
+                                            placeholder="Password"
+                                            aria-label="Password"
+                                            aria-describedby="addon-wrapping"
+                                            name="password"
+                                            onChange={this.onChange}
+                                            value={password}
+                                        />
+                                    </div>
                                 </div>
 
                                 <button css={style.button} type="submit" className="btn rounded-pill px-5">Sign in</button>

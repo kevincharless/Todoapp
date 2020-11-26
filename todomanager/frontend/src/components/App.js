@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
+
 import  { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 
@@ -12,6 +13,8 @@ import Register from './accounts/Register';
 import PrivateRoute from './common/PrivateRoute';
 import LandingPage from './accounts/LandingPage';
 import NotFound404 from './accounts/NotFound404';
+import About from './accounts/About';
+import Faq from './accounts/Faq';
 
 import { Provider } from 'react-redux';
 import store from '../store';
@@ -49,6 +52,8 @@ class App extends Component {
                                         <Route exact path="/register" component={Register} />
                                         <Route exact path="/login" component={Login} />
                                         <Route exact path="/landingpage" component={LandingPage} />
+                                        <Route exact path="/about" component={About} />
+                                        <Route exact path="/faq" component={Faq} />
                                         <Route component={NotFound404} />
                                     </Switch>
                             </Fragment>

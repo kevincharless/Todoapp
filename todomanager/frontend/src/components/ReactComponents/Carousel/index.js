@@ -6,6 +6,10 @@ const Carousel = () => {
         div: css`
             color: #fcf9f9;
             height: 65vh;
+
+            @media(max-width: 600px){
+                height: 25vh;
+            }
         `,
         bgcarousel: css`
             background: linear-gradient(#2f2f35, rgba(0,0,0,0.6)), url('../../../static/frontend/images/bgcarousel.jpg');
@@ -15,7 +19,7 @@ const Carousel = () => {
             max-height: 28.5em;
         `,
         img: css`
-            width: 50%;
+            width: 60%;
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -57,7 +61,7 @@ const Carousel = () => {
         `,
     }
     return (
-        <div css={style.div}>
+        <div css={style.div} className="d-flex align-items-center">
             <div id="carouselExampleFade" className="container-fluid carousel slide carousel-fade" data-ride="carousel">
                 <div className="container">
                     <div data-aos="zoom-in-up" data-aos-delay="100" css={style.bgcarousel} className="row align-items-center carousel-inner mx-0">
@@ -74,10 +78,10 @@ const Carousel = () => {
                                         Making Task 
                                     </span>
                                     <span css={style.content} className="d-block">
-                                        amet consectetur
+                                        By typing in input field
                                     </span>
                                 </div>
-                                <img css={style.img} src="../../../static/frontend/images/landingPage.jpg" className="d-block mr-0" alt="..." />
+                                <img css={style.img} src="../../../static/frontend/images/inputtodo.png" className="d-block mr-0" alt="..." />
                             </div>
                             <div className="carousel-item d-flex align-items-center">
                                 <div css={style.text} className="carousel-caption align-items-center w-50">
@@ -85,10 +89,10 @@ const Carousel = () => {
                                         Completing Task 
                                     </span>
                                     <span css={style.content} className="d-block">
-                                        amet consectetur adipisicing elit. Tenetur, ea.
+                                        Click on Task Title to mark as done
                                     </span>
                                 </div>
-                                <img css={style.img} src="../../../static/frontend/images/content2-3.jpg" className="d-block mr-0" alt="..." />
+                                <img css={style.img} src="../../../static/frontend/images/completetodo.png" className="d-block mr-0" alt="..." />
                             </div>
                             <div className="carousel-item d-flex align-items-center">
                                 <div css={style.text} className="carousel-caption align-items-center w-50">
@@ -96,10 +100,21 @@ const Carousel = () => {
                                         Edit Task 
                                     </span>
                                     <span css={style.content} className="d-block">
-                                        amet consectetur adipisicing elit. Tenetur, ea.
+                                        Click Edit button to start edit
                                     </span>
                                 </div>
-                                <img css={style.img} src="../../../static/frontend/images/content2-1.jpg" className="d-block mr-0" alt="..." />
+                                <img css={style.img} src="../../../static/frontend/images/edittodo.png" className="d-block mr-0" alt="..." />
+                            </div>
+                            <div className="carousel-item d-flex align-items-center">
+                                <div css={style.text} className="carousel-caption align-items-center w-50">
+                                    <span css={style.heading} className="d-block">
+                                        Delete Task 
+                                    </span>
+                                    <span css={style.content} className="d-block">
+                                        Click Delete button to delete the Task
+                                    </span>
+                                </div>
+                                <img css={style.img} src="../../../static/frontend/images/deletetodo.png" className="d-block mr-0" alt="..." />
                             </div>
                         </div>
                         <div className="col-1">

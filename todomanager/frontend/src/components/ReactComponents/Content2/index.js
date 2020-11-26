@@ -15,7 +15,7 @@ const Content2 = ({ img, heading, paragraph, button }) => {
         `,
         heading: css`
             margin: 1em 1.5em 0;
-            color: #1b1b1b;
+            color: #020205;
             font-family: 'Roboto', sans-serif;
             font-weight: bold;
         `,
@@ -29,7 +29,7 @@ const Content2 = ({ img, heading, paragraph, button }) => {
         `,
         paragraph: css`
             margin: 2em;
-            color: #1b1b1b;
+            color: #020205;
             font-family: 'Roboto', sans-serif;
             font-size: 1.1em;
             letter-spacing: 0.01em;
@@ -37,20 +37,20 @@ const Content2 = ({ img, heading, paragraph, button }) => {
         button: css`
             color: #fcf9f9;
             margin: 1em 1.5em 0;
-            background-color: #b3d146;
+            background-color: #89a617;
             font-family: 'Roboto', sans-serif;
             font-weight: bold;
 
             &:hover {
                 color: #fcf9f9;
-                background: #1b1b1b;
+                background: #020205;
             }
         `,
     }
     return (
         <div css={style.col} className="col-md-4">
             <div data-aos="flip-left" data-aos-delay="100" css={style.container} >
-                <img css={style.img} src={img} alt="ilustrasi" />
+                <img css={style.img} src={img} alt="ilustration" />
             
                 <h4 css={style.heading}>
                     { heading }

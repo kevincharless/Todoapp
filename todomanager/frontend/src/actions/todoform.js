@@ -1,9 +1,9 @@
 import { EDIT_TODO, RESET_TODO } from './types'
 
-export const editTodo = (title, id) => {
+export const editTodo = (id, title, description) => {
     return {
         type: EDIT_TODO,
-        payload: {title, id}
+        payload: {id, title, description}
     }
 }
 export const resetTodo = () => {

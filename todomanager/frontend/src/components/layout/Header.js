@@ -158,6 +158,7 @@ export class Header extends Component {
                 font-size: 1em;
                 font-weight: bold;
                 padding: 6px 16px;
+                border-radius: 6px;
 
                 &:hover {
                     color: #b3d146;
@@ -171,6 +172,7 @@ export class Header extends Component {
                 font-size: 1em;
                 font-weight: bold;
                 padding: 6px 16px;
+                border-radius: 6px;
 
                 &:hover {
                     color: #fcf9f9;
@@ -183,6 +185,7 @@ export class Header extends Component {
                 font-family: 'Roboto', sans-serif;
                 font-size: 1em;
                 font-weight: bold;
+                border-radius: 6px;
 
                 &:hover {
                     color: #cd0a0a;
@@ -233,6 +236,13 @@ export class Header extends Component {
         );
 
         const handleChange = (e) => this.props.handleActiveSidebar(e.target.value);
+        
+        {this.props.isAuth ?
+            this.props.isAuth(isAuthenticated)
+            :
+            ""
+        }
+        
 
         return (
             <nav css={this.state.isTop ? style.nav : style.navactive } className={this.state.isTop ? 'navbar navbar-expand navbar-toggleable-xl navbar-inverse fixed-top navbar-transparent' : 'navbar navbar-expand navbar-toggleable-xl navbar-inverse fixed-top'}>

@@ -15,6 +15,7 @@ export class Form extends Component {
 
     state = {
         title: '',
+        description: '',
         completed: false,
         formState: 'create',
     }
@@ -24,12 +25,14 @@ export class Form extends Component {
         if (prevstate.formState != this.props.todoform.formState) {
             this.setState({
                 title: this.props.todoform.title,
+                description: this.props.todoform.description,
                 formState: this.props.todoform.formState
             })
         }
-        else if (prevstate.formState === "edit" && prevstate.title !== this.props.todoform.title) {
+        else if (prevstate.formState === "edit" && prevstate.title !== this.props.todoform.title && prevstate.description !== this.props.todoform.description) {
             this.setState({
-                title: this.props.todoform.title
+                title: this.props.todoform.title,
+                description: this.props.todoform.description
             })
         }
     }
@@ -38,25 +41,31 @@ export class Form extends Component {
         addTodo: PropTypes.func.isRequired
     }
 
-    onChange = e => {
+    onChangeTitle = e => {
         this.props.todoform.title = e.target.value
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    onChangeDescription = e => {
+        this.props.todoform.description = e.target.value
         this.setState({ [e.target.name]: e.target.value });
     }
 
     onSubmit = e => {
         e.preventDefault();
-        const { title, completed } = this.state;
-        const todo = { title, completed };
+        const { title, description, completed } = this.state;
+        const todo = { title, description, completed };
 
         if (this.props.todoform.formState === "create") {
             this.props.addTodo(todo);
             this.setState({
                 title: "",
+                description: "",
                 completed: false,
             });
         }
         else if (this.props.todoform.formState === "edit") {
-            this.props.updateTodo(this.props.todoform.id, title);
+            this.props.updateTodo(this.props.todoform.id, title, description);
             this.props.resetTodo();
         }
 
@@ -70,57 +79,88 @@ export class Form extends Component {
                 background-color: #b3d146;
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
+                border-radius: 6px;
 
                 &:hover {
                     color: #020205;
                     background: #b3d146;
                 }
             `,
-            divCancel: css`
-                flex: auto 0 auto;
-            `,
             buttonCancel: css`
                 color: #fcf9f9;
                 background-color: #cd0a0a;;
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
+                border-radius: 6px;
 
                 &:hover {
                     color: #020205;
                     background: #cd0a0a;
                 }
             `,
+            input: css`
+                border-radius: 6px;
+                padding: 15px;
+            `,
+            card: css`
+                border-radius: 6px;
+            `
         }
 
-        const { title } = this.state
+        const { title, description } = this.state
         return (
             <div className="container px-0 py-3">
-                <div>
-                    <div>
+                <div css={style.card} className="card">
+                    <div className="card-body">
                         <form onSubmit={this.onSubmit} id="form">
+                            <div className="mb-2">Title</div>
                             <div className="d-flex flex-wrap">
                                 <div style={{flex: 12}}>
                                     <input
-                                        onChange={this.onChange}
+                                        css={style.input}
+                                        onChange={this.onChangeTitle}
                                         className="form-control"
                                         id="title"
                                         ref={this.myInput}
                                         value={title}
                                         type="text"
                                         name="title"
-                                        placeholder="Add task..."
+                                        placeholder="Add Title..."
                                         />
                                 </div>
-                                {this.props.todoform.formState === "edit" && (
-                                    <div css={style.divCancel} style={{flex: 2}} >
-                                        <button css={style.buttonCancel} onClick={this.props.resetTodo.bind(this)} className="btn w-100" type="button" name="Cancel">Cancel Edit</button>
-                                    </div>
-                                )}
-
-                                <div style={{flex: 1}}>
-                                    <button css={style.button} className="btn px-5" type="submit" name="Add">Submit</button>
+                            </div>
+                            
+                            <div className="my-2">Description</div>
+                            <div className="d-flex flex-wrap">
+                                <div style={{flex: 12}}>
+                                    <input
+                                        css={style.input}
+                                        onChange={this.onChangeDescription}
+                                        className="form-control"
+                                        id="description"
+                                        ref={this.myInput}
+                                        value={description}
+                                        type="text"
+                                        name="description"
+                                        placeholder="Add Description..."
+                                        />
                                 </div>
                             </div>
+                            <div>
+                            <div style={{flex: 1}} className="text-right mt-3">
+                                {this.props.todoform.formState === "edit" && (
+                                    <button css={style.buttonCancel} onClick={this.props.resetTodo.bind(this)} className="btn px-4" type="button" name="Cancel">
+                                        Cancel Edit
+                                    </button>
+                                        
+                                    )}
+
+                                    <button css={style.button} className="btn px-5 ml-2" type="submit" name="Add">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                            
                         </form>
                     </div>
                 </div>    

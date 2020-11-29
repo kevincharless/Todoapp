@@ -4,22 +4,26 @@ import BackToTop from "react-back-to-top-button";
 
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
-import Hero from '../ReactComponents/Hero'
-import Content from '../ReactComponents/Content'
-import Content2 from '../ReactComponents/Content2'
-import Section from '../ReactComponents/Section'
-import Carousel from '../ReactComponents/Carousel'
-import Endcontent from '../ReactComponents/Endcontent'
+import Hero from '../ReactComponents/Hero';
+import Content from '../ReactComponents/Content';
+import Content2 from '../ReactComponents/Content2';
+import Section from '../ReactComponents/Section';
+import Carousel from '../ReactComponents/Carousel';
+import Endcontent from '../ReactComponents/Endcontent';
+import Endcontentauth from '../ReactComponents/Endcontentauth'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 export default class LandingPage extends Component {
     state = {
         activeSidebar: false,
+        isAuthenticated: false
     };
 
     handleActiveSidebar = (activeSidebar) => this.state.activeSidebar ? this.setState({activeSidebar: false}) : this.setState({activeSidebar: true})
+
+    isAuth = (isAuthenticated) => this.setState({isAuthenticated: true})
 
     render() {
         return (
@@ -35,7 +39,7 @@ export default class LandingPage extends Component {
                     <FontAwesomeIcon icon={faAngleUp} style={{width: "1.5em",  height: "1.5em",fontSize: "2em", color: "#b3d146", backgroundColor: "#020205", borderRadius: "50%", cursor: "pointer"}} />
                 </button>
             </BackToTop>
-            <Header headerLanding logoGreen handleActiveSidebar={this.handleActiveSidebar} activeSidebar={this.state.activeSidebar} />
+            <Header headerLanding logoGreen handleActiveSidebar={this.handleActiveSidebar} activeSidebar={this.state.activeSidebar} isAuth={this.isAuth} />
             <Sidebar activeSidebar={this.state.activeSidebar} currentPath="/landingpage" />
             <div className="container-fluid p-0 m-0">
                 <Hero />
@@ -97,7 +101,11 @@ export default class LandingPage extends Component {
                         </div>
                     </div>
                 </div>
-                <Endcontent />
+                {this.state.isAuthenticated ? 
+                    <Endcontentauth />    
+                    :
+                    <Endcontent />
+                }
             </div>
             
 

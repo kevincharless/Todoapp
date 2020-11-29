@@ -15,3 +15,4 @@ export const COMPLETED_TODO = "COMPLETED_TODO";
 export const EDIT_TODO = "EDIT_TODO";
 export const RESET_TODO = "RESET_TODO";
 export const UPDATE_TODO = "UPDATE_TODO";
+export const FILTER_TODO = "FILTER_TODO";

@@ -24,7 +24,7 @@ export default function Dashboard(initialValue = false) {
             <Header handleActiveSidebar={handleActiveSidebar} noLogo />
             <Sidebar activeSidebar={activeSidebar} currentPath="/" />
             <div className="container-fluid">
-                <div className="container pt-5 mt-5">
+                <div className="container mt-5">
                     <div className="container">
                         <h1 className="font-weight-bold" style={{color: "#b3d146"}}>ToDO List</h1>
                     </div>

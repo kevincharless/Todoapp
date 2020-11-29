@@ -40,12 +40,12 @@ button[data-toggle="collapse"] {
     }
 }
 
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 
 body {
     font-family: 'Roboto', sans-serif;
     background: #fcf9f9;
+    font-weight: 300;
 }
 
 p {

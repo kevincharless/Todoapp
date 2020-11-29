@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BackToTop from "react-back-to-top-button";
 
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
@@ -6,6 +7,9 @@ import Footer from '../ReactComponents/Footer'
 
 import HeroAbout from '../ReactComponents/Heroabout';
 import Profileabout from '../ReactComponents/Profileabout';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 export default class About extends Component {
     state = {
@@ -17,6 +21,17 @@ export default class About extends Component {
     render() {
         return (
             <>
+            <BackToTop
+                showOnScrollUp={false}
+                showAt={100}
+                speed={1500}
+                easing="easeInOutQuint"
+                style={{zIndex: "999", borderRadius: "50%", cursor: "default"}}
+            >
+                <button className="btn btn-transparent p-0 m-0 rounded-circle" style={{borderRadius: "50%", cursor: "default"}}>
+                    <FontAwesomeIcon icon={faAngleUp} style={{width: "1.5em",  height: "1.5em",fontSize: "2em", color: "#b3d146", backgroundColor: "#020205", borderRadius: "50%", cursor: "pointer"}} />
+                </button>
+            </BackToTop>
             <Header headerLanding handleActiveSidebar={this.handleActiveSidebar} activeSidebar={this.state.activeSidebar} />
             <Sidebar activeSidebar={this.state.activeSidebar} currentPath="/about" />
             <div className="container-fluid p-0 m-0">

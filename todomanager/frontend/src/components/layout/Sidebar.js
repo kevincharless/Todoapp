@@ -1,3 +1,4 @@
+
 import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -8,9 +9,6 @@ import  { logout } from '../../actions/auth';
 import { jsx, css } from '@emotion/react'
 
 import '../ReactComponents/Sidebar/index.css';
-import Header from './Header';
-import Form from '../todos/Form';
-import Todos from '../todos/Todos';
 
 export class Sidebar extends Component {
 

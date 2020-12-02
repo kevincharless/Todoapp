@@ -23,7 +23,7 @@ export default class LandingPage extends Component {
 
     handleActiveSidebar = (activeSidebar) => this.state.activeSidebar ? this.setState({activeSidebar: false}) : this.setState({activeSidebar: true})
 
-    isAuth = (isAuthenticated) => this.setState({isAuthenticated: true})
+    isAuth = (isAuthenticated) => this.setState({isAuthenticated: !isAuthenticated})
 
     render() {
         return (
@@ -102,9 +102,9 @@ export default class LandingPage extends Component {
                     </div>
                 </div>
                 {this.state.isAuthenticated ? 
-                    <Endcontentauth />    
+                    <Endcontent />                       
                     :
-                    <Endcontent />
+                    <Endcontentauth /> 
                 }
             </div>
             

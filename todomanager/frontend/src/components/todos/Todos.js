@@ -26,7 +26,6 @@ const style = {
 
 export class Todos extends Component {
     state = {
-        ischecked: false,
         selectedId: []
     }
 
@@ -50,12 +49,15 @@ export class Todos extends Component {
     handleDeleteSelected = (id) => {
         const {selectedId} = this.state;
 
-        this.setState({ischecked: !this.state.ischecked})
-
-        this.setState({
-            selectedId: [...selectedId, id]
-        })
-        console.log(this.state.selectedId)
+        if (selectedId.includes(id)) {
+            this.setState({
+                selectedId: selectedId.filter(ids => ids != id)
+            })
+        } else {
+            this.setState({
+                selectedId: [...selectedId, id]
+            })
+        }
     }
 
     deleteSelected = () => {
@@ -231,16 +233,22 @@ export class Todos extends Component {
                             color: #cd0a0a;
                         }
                     `,
+                    divTitle: css`
+                        width: 25vw;
+                        font-weight: 500;
+                        word-break: break-all;
+                        color: #020205;
+                    `,
                 }
 
                 return (
                     <div className='custom-ui'>
-                        <div className="card rounded-lg p-5 d-flex justify-content-center text-center">
+                        <div className="card rounded-lg p-5 d-flex justify-content-center text-center overflow-hidden">
                             <div className="d-flex justify-content-center">
                                 <FontAwesomeIcon icon={faExclamationTriangle} style={{fontSize: "6em", color: "#cd0a0a"}} />
                             </div>
                             <h1 css={style.textBlack} className="font-weight-bold pt-3">Are you sure?</h1>
-                            <p css={style.textBlack} className="">You want to delete<p css={style.textBlack} className="font-weight-bold m-0">{title}</p>from Todolist?</p>
+                            <p css={style.textBlack} className="">You want to delete<p css={style.divTitle} className="font-weight-bold m-0">{title}</p>from Todolist?</p>
                             <div className="row">
                                 <button css={style.buttonNo} onClick={onClose} className="col btn rounded-lg mr-2 font-weight-bold">No</button>
                                 <button
@@ -267,11 +275,14 @@ export class Todos extends Component {
         return description.match(regexUrl)
     }
 
-    render() {
-        const {
-            filteredTodoContent
-        } = this.state
+    scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+            });
+        }
 
+    render() {
         const style = {
             div: css`
                 color: #020205;
@@ -360,12 +371,23 @@ export class Todos extends Component {
                     cursor: pointer;
                 }
             `,
+            checkBox: css`
+                top: 0;
+            `,
             card: css`
                 border-radius: 6px;
             `,
             searchBar: css`
                 border-radius: 6px;
                 padding: 15px;
+            `,
+            media: css`
+                @media (min-width: 576px) {
+                    
+                }
+            `,
+            title: css`
+                width: 90%;
             `,
         }
 
@@ -374,13 +396,17 @@ export class Todos extends Component {
                 <div css={style.div} className="container">
                     <div css={style.todos}>
                         <div className="container">
-                            <div className="row">
+                            <h4 className="my-0">Add An Item</h4>
+
+                            <Form />
+
+                            <div className="row mb-3">
                                 <div className="col d-flex align-items-center my-0">
-                                    <h4 className="my-0">Add An Item</h4>
+                                    <h4 className="my-0">Search the Title</h4>
                                 </div>
                                 <div className="col-auto p-0 pr-2">
                                     <div className="text-right">
-                                        { this.state.ischecked != false ?
+                                        { this.state.selectedId.length > 0 ?
                                             <button css={style.buttonDelete} onClick={this.deleteSelected} className="btn pull-right">
                                                 Delete Selected
                                             </button>
@@ -395,31 +421,33 @@ export class Todos extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <Form />
                             
-                            <input css={style.searchBar} onChange={this.handleOnChange} className="form-control mb-3" type="text" placeholder="Search" aria-label="Search" />
+                            <input css={style.searchBar} onChange={this.handleOnChange} className="form-control mb-3" type="text" placeholder="Search..." aria-label="Search" />
 
                             <div css={style.card} className="card">
                                 <div className="card-body">
                                     { this.props.todos.map(todo => (
-                                        <>
+                                        <div key={todo.id}>
                                             <div className="d-flex flex-wrap">
-                                                <div style={{flex:1}} className="d-flex justify-content-center align-items-center">
-                                                    <input onChange={ () => this.handleDeleteSelected(todo.id)} type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                                </div>
-
-                                                <div onClick={this.props.completedTodo.bind(this, todo)} style={{flex:1}} className="d-flex justify-content-center align-items-center">
+                                                <div style={{flex:1}} className="d-flex align-items-center">
+                                                    <div className="col d-flex align-items-center">
+                                                        <input css={style.checkBox} onChange={ () => this.handleDeleteSelected(todo.id)} type="checkbox" className="form-check-input m-0" id="exampleCheck1" />
+                                                    </div>
+                                                    <div onClick={this.props.completedTodo.bind(this, todo)} className="col d-flex align-items-center">
                                                     {todo.completed === false ? (
-                                                        ""
+                                                        <span css={style.ceklis} className="material-icons invisible">
+                                                            check
+                                                        </span>
                                                     ) : (
                                                         <span css={style.ceklis} className="material-icons">
                                                             check
                                                         </span>
                                                     )}
+                                                    </div>
                                                 </div>
 
-                                                <div style={{flex:12}}>
-                                                    <div className="row" onClick={this.props.completedTodo.bind(this, todo)}>
+                                                <div style={{flex:10}}>
+                                                    <div css={style.title} className="row mx-0" onClick={this.props.completedTodo.bind(this, todo)}>
                                                         {todo.completed === false ? (
                                                             <span css={style.divTitle}>{todo.title}</span>
                                                         ) : (
@@ -427,28 +455,38 @@ export class Todos extends Component {
                                                         )}
                                                     </div>
                                                     <div className="row ml-1">
-                                                        {todo.completed === false ? 
-                                                            this.isUrl(todo.description) ?
-                                                            (<a href={todo.description} target="__blank" css={style.divDescription}>{todo.description}</a>)
-                                                                :
-                                                            (<span css={style.divDescription}>{todo.description}</span>)
+                                                        <div className="description">
+                                                            {todo.completed === false ? 
+                                                                this.isUrl(todo.description) ?
+                                                                (<a href={todo.description} target="__blank" css={style.divDescription}>{todo.description}</a>)
+                                                                    :
+                                                                (<span css={style.divDescription}>{todo.description}</span>)
 
-                                                        : (
-                                                            <strike css={style.divDescription}>{todo.description}</strike>
-                                                        )}
+                                                            : (
+                                                                <strike css={style.divDescription}>{todo.description}</strike>
+                                                            )}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            
 
                                                 {todo.completed ? (
-                                                    <></>
-                                                ):(
-                                                    <div style={{flex:1}} className="d-flex align-items-center">
+                                                    <div style={{flex:1}} className="d-flex align-items-center invisible">
                                                         <button css={style.buttonEdit} onClick={this.props.editTodo.bind(this, todo.id, todo.title, todo.description)} className="btn btn-sm d-flex justify-content-center align-items-center">
                                                             <span className="material-icons d-block">
                                                                 create
                                                             </span>
-                                                            <span className="d-block">
+                                                            <span className="d-none d-sm-block">
+                                                                Edit
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                ):(
+                                                    <div style={{flex:1}} onClick={this.scrollToTop} className="d-flex align-items-center">
+                                                        <button css={style.buttonEdit} onClick={this.props.editTodo.bind(this, todo.id, todo.title, todo.description)} className="btn btn-sm d-flex justify-content-center align-items-center">
+                                                            <span className="material-icons d-block">
+                                                                create
+                                                            </span>
+                                                            <span className="d-none d-sm-block">
                                                                 Edit
                                                             </span>
                                                         </button>
@@ -463,14 +501,14 @@ export class Todos extends Component {
                                                         <span className="material-icons d-block">
                                                             delete
                                                         </span>
-                                                        <span className="d-block">
+                                                        <span className="d-none d-sm-block">
                                                             Delete
                                                         </span>
                                                     </button>
                                                 </div>
                                             </div>
                                             <hr css={style.hr} />
-                                        </>
+                                        </div>
                                     ))}
                                 </div>
                             </div>

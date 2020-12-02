@@ -25,7 +25,6 @@ export const deleteTodo = (id) => (dispatch, getState) => {
             axios
             .delete(`/api/todos/${id}/`, tokenConfig(getState))
             .then(res => {
-                dispatch(createMessage({ deleteTodo: 'Todo Deleted' }));
                 dispatch({
                     type: DELETE_TODO,
                     payload: id
@@ -33,6 +32,7 @@ export const deleteTodo = (id) => (dispatch, getState) => {
             })
             .catch(err => console.log(err));
         })
+        dispatch(createMessage({ deleteTodo: 'Todo Deleted' }));
     }
     else {
         axios

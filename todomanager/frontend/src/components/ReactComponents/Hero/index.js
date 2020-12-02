@@ -40,7 +40,7 @@ const hero = () => {
     return (
         <div className="container-fluid" css={style.topPage}>
             <div className="container">
-                <div className="row d-flex align-items-end text-right h-100">
+                <div className="row d-flex align-items-end text-right h-100 overflow-hidden">
                     <div css={style.heading} className="col ml-auto mb-4">
                         <span className="d-block">Start Planning,</span>
                         <span className="d-block">Being Productive,</span>

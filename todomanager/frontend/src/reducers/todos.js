@@ -8,10 +8,14 @@ const initialState = {
 export default function(state = initialState, action) {
     switch(action.type) {
         case GET_TODOS:
+            const todoz = action.payload.map(todo => ({
+                ...todo
+            }))
+
             return {
                 ...state,
-                todos: action.payload,
-                allTodos: action.payload
+                todos: todoz,
+                allTodos: todoz
             };
         case DELETE_TODO:
             return {
@@ -25,6 +29,7 @@ export default function(state = initialState, action) {
                 todos: [...state.todos, action.payload],
                 allTodos: [...state.allTodos, action.payload]
             };
+
         case COMPLETED_TODO:
         case UPDATE_TODO:
             let edittedIndex = state.todos.findIndex(todo => todo.id === action.payload.id)

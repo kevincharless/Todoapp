@@ -47,7 +47,7 @@ export class Header extends Component {
                             color: #020205;
                         }
                     `,
-                    buttonYes: css`
+                    buttonLogout: css`
                         background-color: #cd0a0a;
                         color: #fcf9f9;
 
@@ -75,7 +75,7 @@ export class Header extends Component {
                                         onClose();
                                     }}
                                     className="col btn rounded-lg font-weight-bold"
-                                    css={style.buttonYes}
+                                    css={style.buttonLogout}
                                 >
                                 Yes, Logout!
                                 </button>

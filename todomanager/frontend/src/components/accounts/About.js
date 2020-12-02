@@ -28,9 +28,9 @@ export default class About extends Component {
                 easing="easeInOutQuint"
                 style={{zIndex: "999", borderRadius: "50%", cursor: "default"}}
             >
-                <button className="btn btn-transparent p-0 m-0 rounded-circle" style={{borderRadius: "50%", cursor: "default"}}>
+                <div className="btn btn-transparent p-0 m-0 rounded-circle" style={{borderRadius: "50%", cursor: "default"}}>
                     <FontAwesomeIcon icon={faAngleUp} style={{width: "1.5em",  height: "1.5em",fontSize: "2em", color: "#b3d146", backgroundColor: "#020205", borderRadius: "50%", cursor: "pointer"}} />
-                </button>
+                </div>
             </BackToTop>
             <Header headerLanding handleActiveSidebar={this.handleActiveSidebar} activeSidebar={this.state.activeSidebar} />
             <Sidebar activeSidebar={this.state.activeSidebar} currentPath="/about" />

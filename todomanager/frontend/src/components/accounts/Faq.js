@@ -146,6 +146,10 @@ export default class Faq extends Component {
             row: css`
                 margin-bottom: 200px;
             `,
+            searchBar: css`
+                border-radius: 6px;
+                padding: 15px;
+            `,
         }
 
         return (
@@ -157,9 +161,9 @@ export default class Faq extends Component {
                 easing="easeInOutQuint"
                 style={{zIndex: "999", borderRadius: "50%", cursor: "default"}}
             >
-                <button className="btn btn-transparent p-0 rounded-circle" style={{borderRadius: "50%", cursor: "default"}}>
+                <div className="btn btn-transparent p-0 rounded-circle" style={{borderRadius: "50%", cursor: "default"}}>
                     <FontAwesomeIcon icon={faAngleUp} style={{width: "1.5em",  height: "1.5em",fontSize: "2em", color: "#b3d146", backgroundColor: "#020205", borderRadius: "50%", cursor: "pointer"}} />
-                </button>
+                </div   >
             </BackToTop>
             <Header headerLanding handleActiveSidebar={this.handleActiveSidebar} activeSidebar={this.state.activeSidebar} />
             <Sidebar activeSidebar={this.state.activeSidebar} currentPath="/faq" />
@@ -185,7 +189,6 @@ export default class Faq extends Component {
                         
                     </div>
                     <div className="col">
-                        <input onChange={this.handleOnChange} className="form-control" type="text" placeholder="Search" aria-label="Search" />
                         {this.state.activeForgotPassword ? 
                         <div css={style.row}>
                             <h3 className="font-weight-bold">If you forget your password, you can email and send your registered email address to us
@@ -196,6 +199,7 @@ export default class Faq extends Component {
                         </div>
                         :
                         <div css={style.col}>
+                            <input css={style.searchBar} onChange={this.handleOnChange} className="form-control mb-3" type="text" placeholder="Search..." aria-label="Search" />
                             <h4 className="font-weight-bold">Everything you need to know, so you can use Todoapp like a pro</h4>
                             <hr className="pt-0 mt-0" />
                             {filteredFaqContent.map(content => (

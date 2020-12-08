@@ -26,9 +26,14 @@ export default class Faq extends Component {
     componentDidMount = () => {
         const faqContent = [
             {
-                heading: "Input Todo",
+                heading: "Input Todo Title",
                 img: "../../../static/frontend/images/inputtodo.png",
-                paragraph: "Click this Input bar to start typing"
+                paragraph: "Click this add Title bar to start typing"
+            },
+            {
+                heading: "Input Todo Description",
+                img: "../../../static/frontend/images/inputdescription.png",
+                paragraph: "Click this add description bar to start typing"
             },
             {
                 heading: "Submit Todo & Check If it has been inputted",
@@ -74,6 +79,16 @@ export default class Faq extends Component {
                 heading: "Check If it has been Deleted Successfully",
                 img: "../../../static/frontend/images/checkdelete.png",
                 paragraph: "You can check that your Todo is successful delete or not at the bottom right"
+            },
+            {
+                heading: "Delete Selected Todo Tasks",
+                img: "../../../static/frontend/images/deleteselected.png",
+                paragraph: "You can select more than two tasks and delete them with one button, after you select more than two task, You will see Delete Selected button, and press it to delete them"
+            },
+            {
+                heading: "Confirm to Delete Selected Todo",
+                img: "../../../static/frontend/images/deleteselectedconfim.png",
+                paragraph: "After clicking on the Delete button, you will get confirmation to delete your Todo, and you should check the box to agree to delete all selected Todos. Click No button to cancel delete and Click Yes to confirm delete"
             },
             {
                 heading: "Delete all Todo Tasks",

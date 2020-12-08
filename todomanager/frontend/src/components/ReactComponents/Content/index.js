@@ -5,9 +5,11 @@ const Content = ({ heading, content, image, imageStart, bgGreen }) => {
     const style = {
         bgblack: css`
             background-color: #020205;
+            height: 90vh;
         `,
         bggreen: css`
             background-color: #89a617;
+            height: 90vh;
         `,
         container: css`
             color: #fcf9f9;
@@ -34,7 +36,7 @@ const Content = ({ heading, content, image, imageStart, bgGreen }) => {
         `,
     }
     return (
-        <div css={bgGreen ? style.bggreen : style.bgblack} className="container-fluid">
+        <div css={bgGreen ? style.bggreen : style.bgblack} className="container-fluid d-flex align-items-center">
             <div css={style.container} className="container">
                 <div className="row align-items-center">
                     <div data-aos={imageStart ? "flip-left" : "flip-right" } className={`col-md-7 ${ imageStart ? "order-2": "order-1" }`}>

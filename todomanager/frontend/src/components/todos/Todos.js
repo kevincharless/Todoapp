@@ -101,6 +101,7 @@ export class Todos extends Component {
                             <form onSubmit={() => {
                                 this.props.deleteTodo(this.state.selectedId)
                                 onClose();
+                                this.state.selectedId.length = 0
                             }}>
                                 <div class="row form-group form-check">
                                     <label class="form-check-label">
@@ -411,7 +412,9 @@ export class Todos extends Component {
                                                 Delete Selected
                                             </button>
                                             :
-                                            <></>
+                                            <button css={style.buttonDelete} onClick={this.deleteSelected} className="btn pull-right invisible">
+                                                Delete Selected
+                                            </button>
                                         }
                                     </div>
                                 </div>

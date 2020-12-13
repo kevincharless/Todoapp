@@ -420,7 +420,15 @@ export class Todos extends Component {
                                 </div>
                                 <div className="col-auto pl-0">
                                     <div className="text-right">
-                                        { this.props.todos.length != 0 ? <button css={style.buttonDelete} onClick={this.deleteTodoAll} className="btn pull-right">Delete All</button> : <></>}
+                                        { this.state.selectedId.length > 0 ?
+                                            <>
+                                            </>
+                                            :
+                                            <>
+                                            { this.props.todos.length != 0 ? <button css={style.buttonDelete} onClick={this.deleteTodoAll} className="btn pull-right">Delete All</button> : <></>}
+                                            </>
+                                        }
+                                        
                                     </div>
                                 </div>
                             </div>

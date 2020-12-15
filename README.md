@@ -1,13 +1,18 @@
 Course Name = Teknik Pemograman
+
 Lecturer Name = Fredian Simanjuntak, S.Kom.
+
 Project Title = Todoapp
+
 Team Member = - Kevin Charles - 2031161
               - Kelvin - 2031163
               - Kevin Alexander - 2031153
               - Justin Chua - 2031148
               - Jensen Tanedy - 2031158
               - Steven Irfando - 2031169
+              
  Team Name = Team 10
+ 
  Year = 2020
 
 
